@@ -1,0 +1,30 @@
+<div class="nav">
+  <div class="nav-conten">
+      
+      <div class="menu" [ngClass]="{'active': menu}">
+         <ul>
+              <li>
+                  <a class="link" (click)="menu = !menu" routerLinkActive="active" routerLink="/" >Home</a>
+              </li>
+              <li>
+                  <a class="link" (click)="menu = !menu" routerLinkActive="active" routerLink="productos" >Productos</a>
+              </li>
+              <li >
+                  <a class="link" routerLinkActive="active" routerLink="login" >Login</a>
+              </li>
+              <li  (click)="salir()">
+                  <a class="link" href="/" >Cerrar Seccion</a>
+              </li>
+         </ul>
+      </div>
+      <div class="togler" id="togler" (click)="menu = !menu">
+          <div class="menu-toggler">
+              <i [ngClass]="{'fa-xmark': menu}" class="fa-solid fa-bars"></i>
+          </div>
+      </div>
+      <div routerLink="/" class="logo">
+          <img class="img-logo" src="assets/img/logo.png" alt="logo">
+      </div>
+
+  </div>
+</div>

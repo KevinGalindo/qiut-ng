@@ -1,0 +1,55 @@
+
+<div class="center">
+    <div class="form-conteiner">
+        <div class="title">
+            Crear cuenta
+        </div>
+    
+        <form action="">
+    
+            <div class="form-inputs">
+                <div class="input-box">
+                    <span class="input-titles">Nombre de usuario</span>
+                    <input type="text" placeholder="nombre..." required>
+                    <span class="text-error">El nombre es olbligatorio</span>
+                </div>
+                <div class="input-box">
+                    <span class="input-titles">Correo electronico</span>
+                    <input type="text" placeholder="Correo..." required>
+                    <span class="text-error">El correo es olbligatorio</span>
+                </div>
+                <div class="input-box">
+                    <span class="input-titles">Contraseña</span>
+                    <input type="text" placeholder="Contraseña..." required>
+                    <span class="text-error">La contraseña es olbligatoria</span>
+                </div>
+            </div>
+    
+            <div class="flex-sb-c details">
+                <div class="checkbox">
+                    <input 
+                        class="input-check" id="ckb1" type="checkbox">
+                    <label class="label-check" for="ckb1">
+                        Recordar mi usuario
+                    </label>
+                </div>
+    
+                <div class="ques">
+                    <a routerLink="/login" class="a-text">
+                        Iniciar seccion
+                    </a>
+                </div>
+            </div>
+    
+            <div class="btns">
+                <button disabled>Entrar</button>
+                <a class="btn" routerLink="/">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+            </div>
+    
+        </form>
+    
+    </div>
+</div>

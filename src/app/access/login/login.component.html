@@ -1,0 +1,61 @@
+<div class="center">
+    <div class="form-conteiner">
+
+        <div class="form-logo">
+            <img src="assets/img/nombre-logo.png" alt="qiut">
+        </div>
+
+        <div class="title">
+            Iniciar seccion
+        </div>
+    
+        <div [formGroup]="forma">
+    
+            <div class="form-inputs">
+                <div class="input-box">
+                    <span class="input-titles">Correo electronico</span>
+                    <input  type="text" 
+                            placeholder="Correo..."
+                            formControlName="email"
+                            required>
+                    <span [ngClass]="isEmailInvalid ? 'text-invalid':''" class="text-error">El correo es olbligatorio</span>
+                </div>
+                <div class="input-box">
+                    <span class="input-titles">Contraseña</span>
+                    <input  type="text" 
+                            placeholder="Contraseña..." 
+                            formControlName="password"
+                            required>
+                    <span   [ngClass]="isPasswordvalid ? 'text-invalid':''" 
+                            class="text-error">La contraseña es olbligatoria</span>
+                </div>
+            </div>
+    
+            <div class="flex-sb-c details">
+                <div class="checkbox">
+                    <input [formControl]="recorEmail"
+                        class="input-check" id="ckb1" type="checkbox">
+                    <label class="label-check" for="ckb1">
+                        Recordar mi usuario
+                    </label>
+                </div>
+    
+                <div class="ques">
+                    <a routerLink="/registrarse" class="a-text">
+                        ¿No tienes cuenta?
+                    </a>
+                </div>
+            </div>
+    
+            <div class="btns">
+                <button (click)="send()" [disabled]="forma.invalid">Entrar</button>
+                <a class="btn" routerLink="/">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+            </div>
+    
+        </div>
+    
+    </div>
+</div>

@@ -1,0 +1,29 @@
+@media (min-width: 768px){
+
+    .nav-conten{
+
+        .menu{
+            position: inherit;
+            max-width: 97%;
+            background: none;
+            height: auto;
+            padding: 0;
+
+            & ul{
+                flex-direction: row;
+                align-items: normal;
+                justify-content: flex-end;
+                margin-left: 40px;
+
+                & li{
+                    margin: 1rem 5px;
+                }
+            }
+        }
+
+        .togler{
+            display: none !important;
+        }
+    }
+
+}
