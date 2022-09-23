@@ -5,6 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule } 
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ApiAccessService } from 'src/app/services/api/api-access.service';
+import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,11 @@ export class LoginComponent implements OnInit {
 
   recorEmail = new FormControl(false, { nonNullable: true});
 
-  constructor(private _apiServices: ApiAccessService) {
+  /********************************************************************************
+   *Contructor
+   */
+  constructor(private _apiServices: ApiAccessService,
+              private _modal: DialogModalService) {
 
     const email = localStorage.getItem('email');
 
@@ -61,7 +66,6 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log(this.forma.getRawValue());
     this._apiServices.login(this.forma.getRawValue()).subscribe({
       next: (reps) => {
         console.log(reps);
@@ -72,6 +76,11 @@ export class LoginComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         console.log(error.error.message);
+
+        this._modal.show({ 
+          content: error.error.message, 
+          title: 'Error al autenticar' });
+          
       } 
     });
 

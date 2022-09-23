@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal.service';
 
 @Component({
   selector: 'app-home-content',
@@ -10,9 +11,26 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeContentComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _modal: DialogModalService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  activar(type: 'show'|'info'|'alert'|'error'){
+    if (type == 'show') {
+      this._modal.show({ content: 'Hola desde show', title: 'CONTENIDO' });
+    }
+    if (type == 'info') {
+      this._modal.info({ content: 'Hola desde info', title: 'CONTENIDO' });
+    }
+    if (type == 'alert') {
+      this._modal.alert({ content: 'Hola desde alert', title: 'CONTENIDO' });
+    }
+    if (type == 'error') {
+      this._modal.error({ content: 'Hola desde error', title: 'CONTENIDO' });
+    }
   }
 
 }

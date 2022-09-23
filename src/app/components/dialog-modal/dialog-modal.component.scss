@@ -1,5 +1,14 @@
-.modal-footer{
-    button{
-        min-width: 4em;
+.modal-content{
+    border: none;
+
+    .modal-dialog{
+        .modal-header{
+            i{
+                font-size: 40px !important;
+            }
+            .modal-title{
+                font-size: 1.5rem;
+            }
+        }
     }
 }

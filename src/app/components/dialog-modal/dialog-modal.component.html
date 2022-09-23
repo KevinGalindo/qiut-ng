@@ -1,23 +1,61 @@
-<!-- Button trigger modal -->
-<button #buttonShow type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" hidden>
-Launch demo modal
+<!-- Mio modal -->
+<!-- <button #buttonShow (click)="modalShow = true" hidden>Activar</button>
+
+<div 
+    [ngClass]="{'active': modalShow}" 
+    class="modal-container">
+
+    <div class="modal" style="display: grid;">
+
+        <div class="modal-icon">
+            <span class="{{icon.color}}"><i  class="fa-solid {{icon.class}}"></i></span>
+        </div>
+        <h2 class="modal-title">{{data.title}}</h2>
+        <p class="modal-p">
+            {{data.content}}
+        </p>
+        <div class="modal-actions">
+            <button (click)="modalShow = false" class="btn btn-cerrar">CERRAR</button>
+            <button *ngIf="confirm" class="btn btn-confi">aceptar</button>
+        </div>
+
+    </div>
+</div> -->
+
+<!-- Button trigger modal #buttonShow  -->
+<button #buttonShow
+        type="button" 
+        class="btn btn-primary" 
+        data-bs-toggle="modal" 
+        data-bs-target="#exampleModal" 
+        hidden>
+    
+    Launch demo modal
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{data.title || 'Mensaje del sistema'}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" 
+     id="exampleModal" 
+     tabindex="-1" 
+     aria-labelledby="exampleModalLabel" 
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            
+            <i class="fa-solid {{icon.class}}"></i>
+            
+            <h5 class="modal-title" id="exampleModalLabel">{{data.title || 'Mensaje del sistema'}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            {{data.content}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary">Si</button>
+        </div>
+        </div>
     </div>
-    <div class="modal-body">
-        {{data.content}}
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary">Si</button>
-    </div>
-    </div>
-</div>
 </div>

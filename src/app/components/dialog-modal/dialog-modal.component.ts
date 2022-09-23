@@ -1,6 +1,5 @@
-import { HttpBackend } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { DialogModalConfig } from './dialog-modal-events';
+import { DialogModalConfig } from './dialog-modal-config';
 
 @Component({
   selector: 'dialog-modal',
@@ -9,6 +8,8 @@ import { DialogModalConfig } from './dialog-modal-events';
 })
 export class DialogModalComponent implements OnInit, AfterViewInit {
 
+  modalShow:boolean = false;
+  // Aparte
   @ViewChild('buttonShow') elementRefButtonShow!:ElementRef<HTMLButtonElement>;
 
   get buttonShow():HTMLButtonElement {
@@ -28,6 +29,14 @@ export class DialogModalComponent implements OnInit, AfterViewInit {
 
   get data(){
     return DialogModalConfig.data
+  }
+
+  get icon(){
+    return DialogModalConfig.icon
+  }
+
+  get confirm(){
+    return DialogModalConfig.confirm
   }
 
 
