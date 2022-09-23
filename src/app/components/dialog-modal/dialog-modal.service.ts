@@ -10,7 +10,12 @@ export class DialogModalService {
 
 
   show(config:{ content:string, title?:string }): void {
+    const icon = {
+      class: 'fa-bell',
+      color: '',
+    }
 
+    DialogModalConfig.icon = icon;
     DialogModalConfig.data = config;
     DialogModalConfig.show();
 

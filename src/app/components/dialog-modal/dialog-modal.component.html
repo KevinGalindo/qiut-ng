@@ -43,11 +43,12 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         <div class="modal-header">
-            
-            <i class="fa-solid {{icon.class}}"></i>
+           
+            <i class="fa-solid {{icon.class}} {{icon.color}}"></i>
             
             <h5 class="modal-title" id="exampleModalLabel">{{data.title || 'Mensaje del sistema'}}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>
         <div class="modal-body">
             {{data.content}}
