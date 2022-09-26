@@ -9,6 +9,34 @@
     width: auto;
 }
 .modal-dialog{ 
+    &.show{
+
+        .icon{
+            font-size: 4.5rem;
+            
+        }
+            
+    }
+    &.info{
+        .icon{
+
+            font-size: 4.5rem;
+            color: #9ccc65;
+        }
+    }
+    &.alert{
+        .icon{
+            font-size: 4.5rem;
+            color: #fbc02d;
+        }
+    }
+    &.error{
+        .icon{
+            font-size: 4.5rem;
+            color: var(--color-red-danger);
+        }
+    }   
+
 
     .modal-header{
         display: flex;
@@ -17,24 +45,6 @@
         border: none;
 
         column-gap: 10px;
-
-        i{
-            font-size: 40px !important;
-            color: #4fc3f7;
-
-                &.color-danger{
-                    font-size: 4.5rem;
-                    color: var(--color-red-danger);
-                }
-                &.color-info{
-                    font-size: 4.5rem;
-                    color: #9ccc65;
-                }
-                &.color-alert{
-                    font-size: 4.5rem;
-                    color: #fbc02d;
-                }  
-        }
 
         .modal-title{
             font-size: 1.5rem;
