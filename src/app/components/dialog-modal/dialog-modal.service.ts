@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DialogModalConfig } from './dialog-modal-config';
+import { dialogModalConfig, ModalType } from './dialog-modal-config';
 
 @Injectable({
   providedIn: 'root'
@@ -8,50 +8,46 @@ export class DialogModalService {
 
   constructor() { }
 
-
-  show(config:{ content:string, title?:string }): void {
-    const icon = {
-      class: 'fa-bell',
-      color: '',
-    }
-
-    DialogModalConfig.icon = icon;
-    DialogModalConfig.data = config;
-    DialogModalConfig.show();
-
+  private _open(type:ModalType, config:IDataModela, resolve:(value:boolean|undefined) => void): void {
+    dialogModalConfig.title = config.title || 'Mensaje del sistema';
+    dialogModalConfig.content = config.content;
+    dialogModalConfig.confirm = config.confirm || false;
+    dialogModalConfig.type = type;
+    dialogModalConfig.disableClose = config.disableClose || false;
+    dialogModalConfig.resolve = resolve;
+    dialogModalConfig.show();
+    // resolve(true);
   }
 
-  info(config:{ content:string, title?:string }):void{
-    const icon = {
-      class: 'fa-circle-exclamation',
-      color: 'color-info',
-    }
-
-    DialogModalConfig.icon = icon;
-    DialogModalConfig.data = config;
-    DialogModalConfig.show();
+  show(config:IDataModela): Promise<boolean|undefined> {
+    return new Promise((resolve, reject) => {
+      this._open('show',  config, resolve);
+    });
   }
 
-  alert(config:{ content:string, title?:string }):void{
-    const icon = {
-      class: 'fa-triangle-exclamation',
-      color: 'color-alert',
-    }
-
-    DialogModalConfig.confirm = true;
-    DialogModalConfig.icon = icon;
-    DialogModalConfig.data = config;
-    DialogModalConfig.show();
+  info(config:IDataModela): Promise<boolean|undefined> {
+    return new Promise((resolve, reject) => {
+      this._open('info',  config, resolve);
+    });
   }
 
-  error(config:{ content:string, title?:string }):void{
-    const icon = {
-      class: 'fa-skull-crossbones',
-      color: 'color-danger',
-    }
-
-    DialogModalConfig.icon = icon;
-    DialogModalConfig.data = config;
-    DialogModalConfig.show();
+  alert(config:IDataModela): Promise<boolean|undefined> {
+  
+    return new Promise((resolve, reject) => {
+      this._open('alert',  config, resolve);
+    });
   }
+
+  error(config:IDataModela): Promise<boolean|undefined> {
+    return new Promise((resolve, reject) => {
+      this._open('error',  config, resolve);
+    });
+  }
+}
+
+interface IDataModela { 
+  content:string,
+  title?:string,
+  confirm?:boolean,
+  disableClose?:boolean
 }

@@ -34,28 +34,32 @@
 </button>
 
 <!-- Modal -->
-<div class="modal fade" 
-     id="exampleModal" 
-     tabindex="-1" 
-     aria-labelledby="exampleModalLabel" 
-     aria-hidden="true">
+<div #modal
+     class="modal fade" 
+     id="exampleModal"
+     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered" [ngClass]="typeToString">
         <div class="modal-content">
         <div class="modal-header">
            
-            <i class="fa-solid {{icon.class}} {{icon.color}}"></i>
+            <i class="icon"  [ngClass]="icon"></i>
             
-            <h5 class="modal-title" id="exampleModalLabel">{{data.title || 'Mensaje del sistema'}}</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
            
             <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>
         <div class="modal-body">
-            {{data.content}}
+            {{content}}
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary">Si</button>
+            <ng-container *ngIf="isConfirm; else noConfirm">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClickClose(false)">No</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onClickClose(true)">Si</button>
+            </ng-container>
+            <ng-template #noConfirm>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onClickClose(true)">Cerrar</button>
+            </ng-template>
         </div>
         </div>
     </div>

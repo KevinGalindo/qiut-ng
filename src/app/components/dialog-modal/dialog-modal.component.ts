@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { DialogModalConfig } from './dialog-modal-config';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { dialogModalConfig } from './dialog-modal-config';
 
 @Component({
   selector: 'dialog-modal',
@@ -9,40 +9,89 @@ import { DialogModalConfig } from './dialog-modal-config';
 export class DialogModalComponent implements OnInit, AfterViewInit {
 
   modalShow:boolean = false;
-  // Aparte
   @ViewChild('buttonShow') elementRefButtonShow!:ElementRef<HTMLButtonElement>;
+  @ViewChild('modal') elementRefModal!:ElementRef<HTMLElement>;
 
   get buttonShow():HTMLButtonElement {
     return this.elementRefButtonShow.nativeElement;
   }
+  static:string = 'true'
 
-  constructor() {
+  constructor(
+    private render2:Renderer2
+  ) {
 
-    
-    DialogModalConfig.show = () => {
-      
+    dialogModalConfig.show = () => {
+
+      let modal = this.elementRefModal.nativeElement;
+
+      // // // console.log(dialogModalConfig.disableClose);
+
+      // if (dialogModalConfig.disableClose){
+      //   // modal.setAttributeNode()
+      //   console.log('CLOSE ');
+        
+      //   // modal.setAttribute('data-bs-backdrop', 'static');
+      //   this.render2.setAttribute(modal, 'data-bs-backdrop', 'static');
+      //   // this.static = 'static';
+      // }else{
+      //   this.render2.removeAttribute(modal,'data-bs-backdrop');
+      //   console.log('open0');
+      //   // this.static = 'true';
+      //   // modal.removeAttribute('data-bs-backdrop');
+      //   // modal.setAttribute('data-bs-backdrop', 'true');
+      // }
+
       this.buttonShow.click();
-
     }
 
+    console.log(dialogModalConfig.type.toString());
+
   }
 
-  get data(){
-    return DialogModalConfig.data
+  get typeToString():string{
+    return dialogModalConfig.type.toString();
   }
 
-  get icon(){
-    return DialogModalConfig.icon
+  get content():string{
+    return dialogModalConfig.content;
   }
 
-  get confirm(){
-    return DialogModalConfig.confirm
+  get title():string{
+    return dialogModalConfig.title;
   }
 
+  get icon():string{
+    return dialogModalConfig.icon;
+  }
+
+  get isConfirm():boolean{
+    return dialogModalConfig.confirm
+  }
+
+
+  onClickClose(val:boolean|undefined):void {
+    dialogModalConfig.resolve(val);
+  }
 
 
   ngAfterViewInit(): void {
-    // let button = this.elementRefButtonShow.nativeElement;
+    
+    let modal = this.elementRefModal.nativeElement;
+    // if (dialogModalConfig.disableClose){
+    //   modal.setAttribute('data-bs-backdrop', 'static');
+    // }else{
+    //   modal.removeAttribute('data-bs-backdrop');
+    // }
+
+    let remove = modal.removeAttribute;
+
+    modal.removeAttribute = (qualifiedName: string) => {
+      if (qualifiedName == 'role'){
+        dialogModalConfig.resolve(undefined);
+      }
+    }
+
   }
 
   ngOnInit(): void {
