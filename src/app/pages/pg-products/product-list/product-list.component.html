@@ -1,4 +1,72 @@
-<p>product-list works!</p>
+<div class="products-list">
+    <div class="list-cabecera">
+        <h3>Datalles</h3>
+        <a class="list-nuevo">
+            <span>Nuevo</span>
+            <i class="fa-solid fa-dolly"></i>
+        </a>
+    </div>
+
+    <div class="seccion">
+        <div class="aside">
+            <div class="aside-conte">
+                <div class="aisde-logo"><img src="assets/img/abejita.png" alt="abejita"></div>
+                <div [ngClass]="{'active': open}" class="aside-titulo" (click)="open = !open">
+                    <strong>FILTRAR</strong>
+                    <span><i class="fa-solid fa-caret-right"></i></span>
+                </div>
+                <div [ngClass]="{'active': open}" class="aside-list">
+                    <ul class="aside-ul">
+                        <li>
+                            <input #text type="text" placeholder="Buscar...">
+                            <span><i class="fa-solid fa-search"></i></span>
+                        </li>
+                        <li>
+                            <div >Amistad</div>
+                            <span><i class="fa-solid fa-chevron-right"></i></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="conte">
+            <div class="conte-conte">
+                <div class="conte-titulo">
+                    <h2>Detalles</h2>
+                    <div class="conte-search">
+                        <input type="text" placeholder="buscar..">
+                        <span><i class="fa-solid fa-search"></i></span>
+                    </div>
+                </div>
+                <div class="conten-ul">
+                    
+                    <div class="card">
+                        <img src="producto.imgs" alt="producto.nombre">
+                        <div class="buttons-tools">
+                            <button [routerLink]="[]">Editar</button>
+                            <button>borrar</button>
+                        </div>
+                        <div class="conte-content">
+                            <div class="row">
+                                <div class="details">
+                                    <span>Nombre product</span>
+                                    <p>descripcion de un producto</p>
+                                </div>
+                                <div class="prince">$20.000</div>
+                            </div>
+                            <div class="buttons">
+                                <button [routerLink]="" >Ver</button>
+                                <button>Preguntar</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <div>
     <h2>caaja</h2>

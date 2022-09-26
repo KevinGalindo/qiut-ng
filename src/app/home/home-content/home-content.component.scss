@@ -1,0 +1,21 @@
+@media (min-width: 768px){
+    .acerca-de{
+        grid-template-columns: repeat(2,1fr);
+
+
+        .info {
+            flex-direction: initial;
+            width: 310px;
+            margin: 10px;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .acerca-de{
+        .info {
+            width: 420px;
+            margin: 20px;
+        }
+    }
+}

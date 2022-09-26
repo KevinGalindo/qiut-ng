@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductListComponent implements OnInit {
 
   @Input() cate:string = '';
+  open:boolean = false;
 
   constructor( private router: ActivatedRoute) {
 

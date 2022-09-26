@@ -172,6 +172,7 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
             overflow: auto;
+            padding-left: 0;
 
             & li a{
                 color: #374957;
@@ -259,6 +260,235 @@
         }
     }
 }
+
+/* ------------------------------------------------------------------------------- */
+// Acerca de
+.acerca-de{
+    font-size: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    justify-items: center;
+    color: #333;
+
+    .info {
+        width: 100%;
+        margin: 10px 0px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .icono{
+
+            img{
+                width: 80px;
+            }
+        }
+
+        .contenido{
+            margin-left: 10px;
+            text-align: center;
+        }
+    }
+}
+
+/* ------------------------------------------------------------------------------- */
+// Redes
+.redes{
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+
+    .sociales {
+        h3{
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+
+        .iconos {
+            display: flex;
+            justify-content: center;
+            
+            div{
+                cursor: pointer;
+                width: 100px;
+                height: 60px;
+                background: #212123;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 50px;
+                margin: 0px 5px;
+                border-radius: 5px;
+                color: #fff;
+
+                &:first-child{
+                    background: #075e54;
+                }
+
+                &:last-child{
+                    background: #1877f2;
+                }
+            }
+        }
+    }
+}
+
+/* ------------------------------------------------------------------------------- */
+// Products
+.products-list{
+    .list-cabecera{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-bottom: 20px;
+
+        .list-nuevo{
+            background: var(--color-grenn-azul);
+            padding: 10px 20px;
+            border-radius: 3px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+    }
+
+    .seccion{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .aside{
+            width: 100%;
+            padding: 20px 10px 10px;
+            color: #9da1a4;
+
+            .aside-conte{
+                background: #FFFBA3;
+                border-radius: 8px;
+                box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+
+                .aisde-logo{
+                    position: relative;
+                    height: 50px;
+
+                    img{
+                        position: absolute;
+                        left: 95px;
+                        top: -40px;
+                        transform: rotate(-10deg);
+                        width: 90px;
+                        height: 90px;
+                    }
+                }
+
+                .aside-titulo{
+                    padding: 15px 25px;
+                    font-size: 15px;
+                    color:#3b4248;
+                    font-weight: 700;
+                    background: #fff;
+                    margin-bottom: 20px;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    span{
+                        font-size: 24px;
+                        transform: rotate(90deg);
+                        transition: transform ease .3s;
+                    }
+
+                    &.active span{
+                        transform: rotate(270deg);
+                    }
+                }
+
+                .aside-list{
+                    position: relative;
+                    height: 100%;
+                    max-width: 100%;
+                    outline: none;
+                    direction: ltr;
+                    display: none;
+
+                    .aside-ul{
+                        list-style: none;
+                        max-height: 225px;
+                        overflow-y: auto;
+                        padding-left: 0;
+
+                        li{
+                            position: relative;
+                            background: #fff;
+                            color: #323e35;
+                            cursor: pointer;
+                            transition: color linear .3s;
+
+                            input{
+                                display: block;
+                                padding: 10px 45px 10px 15px;
+                                width: 100%;
+                                border: none;
+                                border-bottom: 1px solid #b3b3b3;
+                                outline: none;
+                            }
+
+                            div{
+                                display: block;
+                                padding: 10px 57px 10px 15px;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                            }
+
+                            span{
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                margin: auto;
+                                right: 16px;
+                                display: inline-block;
+                                font-size: 20px;
+                                height: 27px;
+                            }
+
+                            &:hover{
+                                color: var(--color-grenn-azul);
+                            }
+                        }
+                    }
+
+                    &.active{
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .conte{
+            padding: 0;
+
+            .conte-conte{
+                background: #E0FFE5;
+                padding: 15px 10px;
+
+                .conte-titulo{
+                    color: #3b4248;
+                    padding: 15px 20px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .conte-search{}
+                }
+            }
+        }
+    }
+}
+
 /* ------------------------------------------------------------------------------- */
 // Access
 .form-logo{
