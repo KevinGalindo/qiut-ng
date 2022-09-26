@@ -16,7 +16,6 @@ export class DialogModalService {
     dialogModalConfig.disableClose = config.disableClose || false;
     dialogModalConfig.resolve = resolve;
     dialogModalConfig.show();
-    // resolve(true);
   }
 
   show(config:IDataModela): Promise<boolean|undefined> {
