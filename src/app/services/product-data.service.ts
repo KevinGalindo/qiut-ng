@@ -11,14 +11,22 @@ export class ProductDataService {
 
   constructor(private _apiService: ProductsService) { }
 
-  getProducts(){
+  createProduct(product: any){
 
-    if(this.confirm){
-      return this.list;
-    } else {
-      this._apiService.getAll()
-    }
+    this.list.push(product);
+
 
   }
 
+  getProducts(){
+
+    
+
+  }
+
+}
+
+interface Iproduct{
+  nombre: string,
+  precio: string
 }

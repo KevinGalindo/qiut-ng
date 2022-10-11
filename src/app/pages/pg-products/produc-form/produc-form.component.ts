@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal.service';
+import { ProductDataService } from 'src/app/services/product-data.service';
 
 @Component({
   selector: 'app-produc-form',
@@ -25,7 +27,8 @@ export class ProducFormComponent implements OnInit {
       validators: [Validators.required]})
   });
 
-  constructor() { }
+  constructor(private _modal: DialogModalService,
+              private _dataProduct: ProductDataService) { }
 
   ngOnInit(): void {
   }
@@ -40,7 +43,15 @@ export class ProducFormComponent implements OnInit {
 
   send(){
 
-    
+    if (this.forma.invalid) {
+      this._modal.error({
+        content: 'Error en la informacion',
+        title: 'Error'
+      })
+      return;
+    }
+
+    this._dataProduct.createProduct(this.forma.value);
 
   }
 

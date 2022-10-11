@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit {
    *Contructor
    */
   constructor(private _apiServices: ApiAccessService,
-              private _modal: DialogModalService) {
+              private _modal: DialogModalService,
+              private router: Router) {
 
     const email = localStorage.getItem('email');
 
@@ -72,8 +73,9 @@ export class LoginComponent implements OnInit {
     this._apiServices.login(this.forma.getRawValue()).subscribe({
       next: (reps) => {
         this.loading = false;
-        console.log(reps);
+
         localStorage.setItem('token', reps.token);
+        this.router.navigateByUrl('');
         if (this.recorEmail.value === true) {
           localStorage.setItem('email', this.forma.controls.email.value);
         }

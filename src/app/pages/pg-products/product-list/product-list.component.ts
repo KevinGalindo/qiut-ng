@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiAccessService } from 'src/app/services/api/api-access.service';
+import { ProductDataService } from 'src/app/services/product-data.service';
 
 @Component({
   selector: 'app-product-list',
@@ -12,10 +13,11 @@ export class ProductListComponent implements OnInit {
   @Input() cate:string = '';
   open:boolean = false;
 
-  prueba:boolean = false;
+  products: any[] = [];
 
   constructor( private router: ActivatedRoute,
-               public auth: ApiAccessService) {
+               public auth: ApiAccessService,
+               private _dataProduct: ProductDataService) {
 
     this.router.queryParams.subscribe();
 
@@ -23,6 +25,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.products = this._dataProduct.list;
 
   }
 
