@@ -8,8 +8,9 @@ import { ApiAccessService } from '../services/api/api-access.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor( private auth: ApiAccessService,
-               private router: Router ) {}
+  constructor( 
+    private auth: ApiAccessService,
+    private router: Router ) {}
 
   canActivate(): boolean {
 

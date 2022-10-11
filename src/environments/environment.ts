@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  UrlApi: 'http://localhost/qiut-api'
+  UrlApi: 'http://localhost/appweb/qiut-api'
 };
 
 /*

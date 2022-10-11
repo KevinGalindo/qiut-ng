@@ -13,25 +13,35 @@
   
           <div class="form-inputs">
               <div class="input-box">
-                <input type="file" name="imgs" id="imgs" multiple>
-              </div>
-              <div class="input-box">
                   <span class="input-titles">Nombre</span>
-                  <input  type="text" 
-                          placeholder="nombre..."
-                          formControlName="nombre"
-                          required>
+                  <input  type="text"
+                  placeholder="nombre..."
+                  formControlName="name"
+                  required>
                   <span [ngClass]="isNombreInvalid ? 'text-invalid':''" class="text-error">El nombre es olbligatorio</span>
-              </div>
-              <div class="input-box">
-                  <span class="input-titles">Precio</span>
-                  <input  type="text" 
-                          placeholder="precio..." 
-                          formControlName="precio"
-                          required>
-                  <span   [ngClass]="isPreciovalid ? 'text-invalid':''" 
-                          class="text-error">El precio es olbligatoria</span>
-              </div>
+                </div>
+
+                <!-- Precio -->
+                <div class="input-box">
+                    <span class="input-titles">Precio</span>
+                    <input  type="text" 
+                    class="number"
+                    placeholder="precio..." 
+                    formControlName="price"
+                    required>
+                    <span   [ngClass]="isPreciovalid ? 'text-invalid':''" 
+                    class="text-error">El precio es olbligatoria</span>
+                </div>
+
+
+                <!-- Galeria -->
+                <div>
+                    <div class="galery">
+                        <img *ngFor="let img of images" [src]="img.src">
+                    </div>
+                    <button type="button" class="btn btn-primary" (click)="inputFile.click()">Subir imagenes</button>
+                </div>
+                <input #inputFile type="file" name="imgs" id="imgs" multiple hidden (change)="tryFile($event)">
           </div>
   
           <div class="btns">
