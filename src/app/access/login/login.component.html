@@ -48,7 +48,10 @@
             </div>
     
             <div class="btns">
-                <button (click)="send()" [disabled]="forma.invalid">Entrar</button>
+                <button (click)="send()" [disabled]="forma.invalid">
+                    <span *ngIf="loading == false">Entrar</span>
+                    <i *ngIf="loading" class="fa-solid fa-circle-notch fa-spin"></i>
+                </button>
                 <a class="btn" routerLink="/">
                     <i class="fa-solid fa-house"></i>
                     <span>Inicio</span>

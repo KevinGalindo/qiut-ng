@@ -9,11 +9,14 @@
               <li>
                   <a class="link" (click)="menu = !menu" routerLinkActive="active" routerLink="productos" >Productos</a>
               </li>
-              <li >
+              <li   *ngIf="!auth.isAuth()">
                   <a class="link" routerLinkActive="active" routerLink="login" >Login</a>
               </li>
-              <li  (click)="salir()">
-                  <a class="link" href="/" >Cerrar Seccion</a>
+              <li   *ngIf="auth.isAuth()"   
+                    (click)="salir()">
+
+                  <a class="link" >Cerrar Seccion</a>
+
               </li>
          </ul>
       </div>

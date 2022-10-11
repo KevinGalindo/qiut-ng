@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
 
   recorEmail = new FormControl(false, { nonNullable: true});
 
+  loading: boolean = false;
+
   /********************************************************************************
    *Contructor
    */
@@ -66,8 +68,10 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
     this._apiServices.login(this.forma.getRawValue()).subscribe({
       next: (reps) => {
+        this.loading = false;
         console.log(reps);
         localStorage.setItem('token', reps.token);
         if (this.recorEmail.value === true) {
@@ -75,9 +79,9 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (error: HttpErrorResponse) => {
-        console.log(error.error.message);
+        this.loading = false;
 
-        this._modal.show({ 
+        this._modal.error({ 
           content: error.error.message, 
           title: 'Error al autenticar' });
           

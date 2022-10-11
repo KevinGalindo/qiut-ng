@@ -1,28 +1,41 @@
-<h2>Formulario</h2>
+<div class="center">
+  <div class="form-conteiner">
 
-<div>
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <!-- Agregar form filters -->
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+      <div class="form-logo">
+          <img src="assets/img/nombre-logo.png" alt="qiut">
       </div>
-    </div>
+
+      <div class="title">
+          Crear producto
+      </div>
+  
+      <div [formGroup]="forma">
+  
+          <div class="form-inputs">
+              <div class="input-box">
+                  <span class="input-titles">Nombre</span>
+                  <input  type="text" 
+                          placeholder="nombre..."
+                          formControlName="nombre"
+                          required>
+                  <span [ngClass]="isNombreInvalid ? 'text-invalid':''" class="text-error">El nombre es olbligatorio</span>
+              </div>
+              <div class="input-box">
+                  <span class="input-titles">Precio</span>
+                  <input  type="text" 
+                          placeholder="precio..." 
+                          formControlName="precio"
+                          required>
+                  <span   [ngClass]="isPreciovalid ? 'text-invalid':''" 
+                          class="text-error">El precio es olbligatoria</span>
+              </div>
+          </div>
+  
+          <div class="btns">
+              <button (click)="send()" [disabled]="forma.invalid">Crear</button>
+          </div>
+  
+      </div>
+  
   </div>
 </div>

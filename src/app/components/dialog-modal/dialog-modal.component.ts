@@ -23,25 +23,6 @@ export class DialogModalComponent implements OnInit, AfterViewInit {
 
     dialogModalConfig.show = () => {
 
-      let modal = this.elementRefModal.nativeElement;
-
-      // // // console.log(dialogModalConfig.disableClose);
-
-      // if (dialogModalConfig.disableClose){
-      //   // modal.setAttributeNode()
-      //   console.log('CLOSE ');
-        
-      //   // modal.setAttribute('data-bs-backdrop', 'static');
-      //   this.render2.setAttribute(modal, 'data-bs-backdrop', 'static');
-      //   // this.static = 'static';
-      // }else{
-      //   this.render2.removeAttribute(modal,'data-bs-backdrop');
-      //   console.log('open0');
-      //   // this.static = 'true';
-      //   // modal.removeAttribute('data-bs-backdrop');
-      //   // modal.setAttribute('data-bs-backdrop', 'true');
-      // }
-
       this.buttonShow.click();
     }
 
@@ -78,11 +59,6 @@ export class DialogModalComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     
     let modal = this.elementRefModal.nativeElement;
-    // if (dialogModalConfig.disableClose){
-    //   modal.setAttribute('data-bs-backdrop', 'static');
-    // }else{
-    //   modal.removeAttribute('data-bs-backdrop');
-    // }
 
     let remove = modal.removeAttribute;
 

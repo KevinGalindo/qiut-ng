@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { ApiAccessService } from 'src/app/services/api/api-access.service';
 
 @Component({
   selector: 'app-nabvar',
@@ -17,13 +18,17 @@ export class NabvarComponent implements OnInit {
   menu: boolean = false;
   guard: boolean = false;
 
-  constructor() { }
+  constructor( public auth: ApiAccessService,
+               private router: Router) { }
 
   ngOnInit(): void {
   }
 
   salir(){
-    // this.auth.logout();
+    
+    this.auth.logout();
+    this.router.navigateByUrl('');
+
   }
 
 }

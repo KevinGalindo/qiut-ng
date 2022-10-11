@@ -5,29 +5,38 @@
             Crear cuenta
         </div>
     
-        <form action="">
+        <div [formGroup]="forma">
     
             <div class="form-inputs">
                 <div class="input-box">
                     <span class="input-titles">Nombre de usuario</span>
-                    <input type="text" placeholder="nombre..." required>
-                    <span class="text-error">El nombre es olbligatorio</span>
+                    <input  type="text" 
+                            placeholder="nombre..." 
+                            formControlName="name"
+                            required>
+                    <span [ngClass]="isNameInvalid ? 'text-invalid':''" class="text-error">El nombre es olbligatorio</span>
                 </div>
                 <div class="input-box">
                     <span class="input-titles">Correo electronico</span>
-                    <input type="text" placeholder="Correo..." required>
-                    <span class="text-error">El correo es olbligatorio</span>
+                    <input  type="text" 
+                            placeholder="Correo..." 
+                            formControlName="email"                
+                            required>
+                    <span [ngClass]="isEmailInvalid ? 'text-invalid':''" class="text-error">El correo es olbligatorio</span>
                 </div>
                 <div class="input-box">
                     <span class="input-titles">Contraseña</span>
-                    <input type="text" placeholder="Contraseña..." required>
-                    <span class="text-error">La contraseña es olbligatoria</span>
+                    <input  type="password" 
+                            placeholder="Contraseña..."
+                            formControlName="password" 
+                            required>
+                    <span [ngClass]="isPasswordInvalid ? 'text-invalid':''" class="text-error">La contraseña es olbligatoria</span>
                 </div>
             </div>
     
             <div class="flex-sb-c details">
                 <div class="checkbox">
-                    <input 
+                    <input [formControl]="recorEmail"
                         class="input-check" id="ckb1" type="checkbox">
                     <label class="label-check" for="ckb1">
                         Recordar mi usuario
@@ -42,14 +51,17 @@
             </div>
     
             <div class="btns">
-                <button disabled>Entrar</button>
+                <button [disabled]="forma.invalid" (click)="send()">
+                    <span *ngIf="loading == false">Crear cuenta</span>
+                    <i *ngIf="loading" class="fa-solid fa-circle-notch fa-spin"></i>
+                </button>
                 <a class="btn" routerLink="/">
                     <i class="fa-solid fa-house"></i>
                     <span>Inicio</span>
                 </a>
             </div>
     
-        </form>
+        </div>
     
     </div>
 </div>
