@@ -18,6 +18,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ProducFormComponent implements OnInit {
 
+  openSelect: boolean = true;
+
+  categorys = [] = ['amor','parejas','dia del padre','dia del niño','cumpleaños'];
+
   forma = new FormGroup({
     name    : new FormControl(``,{
       nonNullable: true,
@@ -25,7 +29,11 @@ export class ProducFormComponent implements OnInit {
     }),
     price : new FormControl('',{
       nonNullable: true, 
-      validators: [Validators.required]})
+      validators: [Validators.required]
+    }),
+    description: new FormControl('',{
+      nonNullable: true,
+    })
   });
 
   images:{file:File, src:string}[] = [];
@@ -37,6 +45,7 @@ export class ProducFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.categorys);
   }
 
   get isNombreInvalid():boolean{
@@ -86,10 +95,14 @@ export class ProducFormComponent implements OnInit {
     });
   }
 
+  category(item: any, cheked:HTMLLIElement){
+    console.log(item);
+    console.log(cheked);
+    cheked.classList.toggle('checked');
+  }
+
   send(){
-
-    console.log(Number.parseInt(this.forma.getRawValue().price.replace('.', ''))); return;
-
+    console.log(this.forma.getRawValue());
     if (this.forma.invalid) {
       this._modal.error({
         content: 'Error en la informacion',

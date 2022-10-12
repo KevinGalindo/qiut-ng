@@ -1,3 +1,20 @@
+.form-inputs .input-w10{
+    width: 100%;
+
+    textarea{
+        height: 45px;
+        width: 100%;
+        outline: none;
+        border-radius: 5px;
+        border: 1px solid var(--input-border-color);
+        padding-left: 15px;
+        font-size: 16px;
+        border-bottom-width: 2px;
+        z-index: 20;
+        transition: border-color ease 0.3s;
+    }
+}
+
 .galery{
     display: flex;
     column-gap: .5em;
@@ -7,5 +24,42 @@
     img{
         height: 200px;
         width: 200px;
+        object-fit: cover;
     }
+}
+
+@media (min-width: 768px){
+
+    .form-conteiner{
+        max-width: 700px;
+        width: 100%;
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    
+        .form-inputs .input-box {
+            width: calc(100% / 2 - 20px);
+        }
+
+        .form-inputs .input-w10{
+            width: 100%;
+
+            textarea{
+                height: 90px;
+                width: 100%;
+                outline: none;
+                border-radius: 5px;
+                border: 1px solid var(--input-border-color);
+                padding-left: 15px;
+                padding-top: 15px;
+                font-size: 16px;
+                border-bottom-width: 2px;
+                z-index: 20;
+                transition: border-color ease 0.3s;
+            }
+        }
+        
+    }
+
 }

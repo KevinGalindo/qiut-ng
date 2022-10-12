@@ -12,13 +12,13 @@ export class ProductDataService {
   constructor(private _apiService: ApiProductsService) { }
 
   createProduct(product: Iproduct, files:File[]):Promise<boolean>{
+
     return new Promise((resolve, reject) => {
 
-   
       this._apiService.create(product, files).subscribe({
         next: res => {
           console.log(res);
-          // this.list.push(product);
+          this.list.push(product);
           resolve(true);
         },
         error: err => {
@@ -26,6 +26,7 @@ export class ProductDataService {
         }
       })
     });
+    
   }
 
   getProducts(){
@@ -38,5 +39,6 @@ export class ProductDataService {
 
 interface Iproduct{
   name: string,
-  price: string
+  price: string,
+  description?: string
 }

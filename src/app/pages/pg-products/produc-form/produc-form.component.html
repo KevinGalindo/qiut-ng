@@ -12,12 +12,13 @@
       <div [formGroup]="forma">
   
           <div class="form-inputs">
-              <div class="input-box">
+                <!-- Nombre -->
+                <div class="input-box">
                   <span class="input-titles">Nombre</span>
                   <input  type="text"
-                  placeholder="nombre..."
-                  formControlName="name"
-                  required>
+                    placeholder="nombre..."
+                    formControlName="name"
+                    required>
                   <span [ngClass]="isNombreInvalid ? 'text-invalid':''" class="text-error">El nombre es olbligatorio</span>
                 </div>
 
@@ -25,14 +26,60 @@
                 <div class="input-box">
                     <span class="input-titles">Precio</span>
                     <input  type="text" 
-                    class="number"
-                    placeholder="precio..." 
-                    formControlName="price"
-                    required>
+                        class="number"
+                        placeholder="precio..." 
+                        formControlName="price"
+                        required>
                     <span   [ngClass]="isPreciovalid ? 'text-invalid':''" 
                     class="text-error">El precio es olbligatoria</span>
                 </div>
 
+                <!-- Descripcion -->
+                <div class="input-box input-w10">
+                    <span class="input-titles">Descripción</span>
+                    <textarea placeholder="descripción..."
+                    formControlName="description"
+                    class="textarea"></textarea>
+                </div>
+
+                <!-- Multi select -->
+                <div class="select-container">
+                    <div [ngClass]="{'open': openSelect}" 
+                         class="select-btn"
+                         (click)="openSelect = !openSelect">
+                        <span class="btn-text">Categorias</span>
+                        
+                        <span class="arrow-dwn">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </div>
+            
+                    <ul class="list-items">
+                      <!-- <li class="item">
+                        <span class="checkbox">
+                          <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text">
+                          HTML & CSS
+                        </span>
+                      </li>-->
+                        <li class="item">
+                            <div class="search">
+                                <i class="fa-solid fa-search"></i>
+                                <input type="text" placeholder="Buscar...">
+                            </div>
+                        </li>
+                        <li *ngFor="let item of categorys" #chekedList class="item">
+                            <div style="display: flex; align-items: center;" (click)="category(item,chekedList)">
+                                <span class="checkbox">
+                                    <i class="fa-solid fa-check check-icon"></i>
+                                </span>
+                                <span class="item-text">{{item}}</span>
+                            </div>
+                        </li>
+                    
+                    </ul>
+                </div>
 
                 <!-- Galeria -->
                 <div>

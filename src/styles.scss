@@ -839,6 +839,155 @@
 }
 
 /* ------------------------------------------------------------------------------- */
+// select
+.select-container {
+    position: relative;
+    max-width: 320px;
+    width: 100%;
+    margin: 15px auto 20px;
+
+    .select-btn {
+        display: flex;
+        justify-content: space-between;
+        height: 50px;
+        align-items: center;
+        padding: 0px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        background-color: #fff;
+        box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+
+        .btn-text {
+            font-size: 17px;
+            font-weight: 400;
+            color: #333;
+        }
+
+        &.open{
+            .arrow-dwn {
+                transform: rotate(-180deg);
+            }
+
+            & ~ .list-items{
+                display: block;
+            }
+        }
+
+        .arrow-dwn {
+            display: flex;
+            height: 21px;
+            width: 21px;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 50%;
+            background: #6e93f7;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+    }
+
+    .list-items {
+        position: relative;
+        display: none;
+        margin-top: 15px;
+        border-radius: 8px;
+        padding: 16px;
+        background-color: #fff;
+        box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+        max-height: 500px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        &::-webkit-scrollbar{
+            width: 7px;
+        }
+        &::-webkit-scrollbar-track{
+            background: #f1f1f1;
+            border-radius: 25px;
+        }
+        &::-webkit-scrollbar-thumb{
+            background: #ccc;
+            border-radius: 25px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            height: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 8px;
+
+            .search{
+                position: relative;
+
+                i{
+                    position: absolute;
+                    left: 15px;
+                    line-height: 53px;
+                    color: #999;
+                    font-size: 20px;
+                }
+
+                input{
+                    height: 53px;
+                    width: 100%;
+                    font-size: 17px;
+                    outline: none;
+                    border-radius: 5px;
+                    padding: 0 15px 0 43px;
+                    border: 1px solid #b3b3b3;
+                    border-bottom-width: 2px;
+                    transition: border-color ease 0.3s;
+
+                    &:focus{
+                        border-color: var(--input-border-color);
+                    }
+                }
+            }
+
+            &.checked .checkbox{
+                background-color: #4070f4;
+                border-color: #4070f4;
+
+                .check-icon {
+                    transform: scale(1);
+                }
+            }
+
+            .checkbox {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 16px;
+                width: 16px;
+                border-radius: 4px;
+                margin-right: 12px;
+                border: 1.5px solid #c0c0c0;
+                transition: all 0.3s ease-in-out;
+
+                .check-icon {
+                    color: #fff;
+                    font-size: 11px;
+                    transform: scale(0);
+                    transition: all 0.3s ease-in-out;
+                }
+            }
+
+            .item-text {
+                font-size: 16px;
+                font-weight: 400;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                text-transform: capitalize;
+                color: #333;
+            }
+        }
+    }
+}
+
+/* ------------------------------------------------------------------------------- */
 // Modal
 .modal-container{
     overflow-y: auto;

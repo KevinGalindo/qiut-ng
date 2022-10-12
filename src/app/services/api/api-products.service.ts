@@ -15,7 +15,7 @@ export class ApiProductsService {
     // new Promise()
   }
 
-  create(data:any, files:File[]): Observable<any> {
+  create(data:Iproduct, files:File[]): Observable<any> {
 
     let formData = new FormData();
 
@@ -28,4 +28,10 @@ export class ApiProductsService {
     return this._http.post('products', formData);
   }
 
+}
+
+interface Iproduct{
+  name: string,
+  price: string,
+  description?: string
 }
