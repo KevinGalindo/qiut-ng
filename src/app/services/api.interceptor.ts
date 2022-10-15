@@ -28,7 +28,6 @@ export class ApiInterceptor implements HttpInterceptor {
     });
 
     const clonRequest = request.clone({url, headers });
-    console.log(clonRequest);
 
     return next.handle(clonRequest);
   }

@@ -55,14 +55,7 @@
                     </div>
             
                     <ul class="list-items">
-                      <!-- <li class="item">
-                        <span class="checkbox">
-                          <i class="fa-solid fa-check check-icon"></i>
-                        </span>
-                        <span class="item-text">
-                          HTML & CSS
-                        </span>
-                      </li>-->
+        
                         <li class="item">
                             <div class="search">
                                 <i class="fa-solid fa-search"></i>
@@ -81,20 +74,63 @@
                     </ul>
                 </div>
 
+                <!-- Type -->
+                <div class="section-category">
+                    <span class="input-titles">Tipo</span>
+                    <div class="category-flex">
+                
+                        <ul>
+                
+                            <li>
+                                <a (click)="cambiarType('detalles')">   
+                                    <div class="category-degree" [ngClass]="{'select': type === 'detalles'}">
+                                        <div class="category-border">
+                                            <img class="category-img" src="assets/img/detalles.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <h3 class="category-title">Detalles</h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="cambiarType('tasas')">
+                                    <div class="category-degree" [ngClass]="{'select': type === 'tasas'}">
+                                        <div class="category-border">
+                                            <img class="category-img" src="assets/img/tasas.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <h3 class="category-title">Tasas</h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="cambiarType('camisas')">
+                                    <div class="category-degree" [ngClass]="{'select': type === 'camisas'}">
+                                        <div class="category-border">
+                                            <img class="category-img" src="assets/img/camisas.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <h3 class="category-title">Camisas</h3>
+                                </a>
+                            </li>
+                        
+                        </ul>
+                
+                    </div>
+                </div>
+
                 <!-- Galeria -->
                 <div>
                     <div class="galery">
                         <img *ngFor="let img of images" [src]="img.src">
                     </div>
-                    <button type="button" class="btn btn-primary" (click)="inputFile.click()">Subir imagenes</button>
+                    <button type="button" class="btn btn-main" (click)="inputFile.click()">Subir imagenes</button>
                 </div>
                 <input #inputFile type="file" name="imgs" id="imgs" multiple hidden (change)="tryFile($event)">
           </div>
   
           <div class="btns">
                 <button (click)="send()" [disabled]="forma.invalid">
-                    <span>Crear</span>
-                    <span></span>
+                    <span *ngIf="!loading">Crear</span>
+                    <span><i *ngIf="loading" class="fa-solid fa-circle-notch fa-spin"></i></span>
                 </button>
           </div>
   

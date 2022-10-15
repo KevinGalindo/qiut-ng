@@ -880,7 +880,7 @@
             color: #fff;
             font-size: 14px;
             border-radius: 50%;
-            background: #6e93f7;
+            background: var(--input-border-color);
             align-items: center;
             justify-content: center;
             transition: 0.3s;
@@ -1134,6 +1134,19 @@
 // General
 li {
     list-style: none;
+}
+
+.btn-cerrar{
+    background: var(--color-grenn-azul);
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    color: #FFF;
+
+    &:hover{
+        background: transparent;
+        color: var(--color-grenn-azul) !important;
+        border-color: var(--color-grenn-azul) !important;
+    }
 }
 
 .center{

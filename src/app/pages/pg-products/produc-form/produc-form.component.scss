@@ -15,6 +15,24 @@
     }
 }
 
+.section-category .category-flex ul li a {
+    width: 80px;
+    min-width: 80px;
+
+    .category-degree {
+        background: transparent;
+
+        &.select{
+            background:#9b59b566;
+        }
+    }
+}
+.input-titles{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
 .galery{
     display: flex;
     column-gap: .5em;
@@ -25,6 +43,18 @@
         height: 200px;
         width: 200px;
         object-fit: cover;
+    }
+}
+
+.btn-main{
+    background: var(--input-border-color);
+    border: 1px solid transparent;
+    color: #fff;
+
+    &:hover{
+        background: transparent;
+        border-color: var(--input-border-color);
+        color: var(--input-border-color);
     }
 }
 

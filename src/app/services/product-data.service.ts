@@ -45,5 +45,6 @@ export class ProductDataService {
 interface Iproduct{
   name: string,
   price: string,
+  type: string,
   description?: string
 }

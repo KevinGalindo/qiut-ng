@@ -20,6 +20,7 @@ export class ProducFormComponent implements OnInit {
 
   openSelect: boolean = true;
   loading:boolean = false;
+  type:string = 'detalles';
   menssage:string = 'Categorias';
 
   categorys: Icategory[] = [
@@ -142,8 +143,6 @@ export class ProducFormComponent implements OnInit {
       this.menssage = `${this.categorysResult.length} selecionadas`;
     }
 
-    console.log(this.categorysResult);
-
   }
 
   bucarFiltro(inSearch: string){
@@ -155,8 +154,12 @@ export class ProducFormComponent implements OnInit {
 
   }
 
+  cambiarType(type: string){
+    this.type = type;
+  }
+
   send(){
-    console.log(this.forma.getRawValue());
+
     if (this.forma.invalid) {
       this._modal.error({
         content: 'Error en la informacion',
@@ -164,14 +167,24 @@ export class ProducFormComponent implements OnInit {
       })
       return;
     }
+    
+    this.loading = true;
+    let productTmp: Iproduct = {
+      ...this.forma.getRawValue(),
+      type: this.type
+    }  
 
     this._dataProduct.createProduct(
-      this.forma.getRawValue(),
+      productTmp,
       this.images.map(val => val.file),
       this.categorysResult
     ).then(x => {
 
       console.log(x);
+      this.loading = false;
+      this._modal.info({
+        content: 'El producto sea creado'
+      })
 
     })
 
@@ -183,4 +196,11 @@ interface Icategory{
   id: number,
   name: string,
   status: boolean
+}
+
+interface Iproduct{
+  name: string,
+  price: string,
+  type: string,
+  description?: string
 }
