@@ -6,10 +6,12 @@ import { ApiProductsService } from './api/api-products.service';
 })
 export class ProductDataService {
 
-  list: any[] =[];
+  list: Iproduct[] =[];
   confirm = false;
 
-  constructor(private _apiService: ApiProductsService) { }
+  constructor(private _apiService: ApiProductsService) {
+    console.log('hola');
+  }
 
   createProduct(product: Iproduct, files:File[], categorys?: any[]):Promise<boolean>{
 
@@ -36,7 +38,13 @@ export class ProductDataService {
 
   getProducts(){
 
-    
+    if (this.confirm) {
+      
+      this._apiService.getAll().subscribe(resp =>{
+        console.log(resp);
+      });
+
+    }
 
   }
 
@@ -46,5 +54,6 @@ interface Iproduct{
   name: string,
   price: string,
   type: string,
-  description?: string
+  description?: string,
+  categorys?: any[]
 }

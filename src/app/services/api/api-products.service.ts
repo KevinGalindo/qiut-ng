@@ -12,7 +12,7 @@ export class ApiProductsService {
   ) { }
 
   getAll(){
-    // new Promise()
+    return this._http.get('getproducts');
   }
 
   create(data:Iproduct, files:File[]): Observable<any> {

@@ -16,8 +16,8 @@ export class ProductListComponent implements OnInit {
   products: any[] = [];
 
   constructor( private router: ActivatedRoute,
-               public auth: ApiAccessService,
-               private _dataProduct: ProductDataService) {
+    public auth: ApiAccessService,
+    private _dataProduct: ProductDataService) {
 
     this.router.queryParams.subscribe();
 
@@ -25,7 +25,8 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.products = this._dataProduct.list;
+    // this.products = this._dataProduct.list;
+    this._dataProduct.getProducts();
 
   }
 
