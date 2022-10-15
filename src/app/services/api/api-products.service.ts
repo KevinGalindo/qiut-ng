@@ -33,5 +33,6 @@ export class ApiProductsService {
 interface Iproduct{
   name: string,
   price: string,
-  description?: string
+  description?: string,
+  categorys?: any[]
 }

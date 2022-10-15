@@ -47,7 +47,7 @@
                     <div [ngClass]="{'open': openSelect}" 
                          class="select-btn"
                          (click)="openSelect = !openSelect">
-                        <span class="btn-text">Categorias</span>
+                        <span class="btn-text">{{menssage}}</span>
                         
                         <span class="arrow-dwn">
                             <i class="fa-solid fa-chevron-down"></i>
@@ -66,15 +66,15 @@
                         <li class="item">
                             <div class="search">
                                 <i class="fa-solid fa-search"></i>
-                                <input type="text" placeholder="Buscar...">
+                                <input type="text" #inSearch (keyup)="bucarFiltro(inSearch.value)" placeholder="Buscar...">
                             </div>
                         </li>
-                        <li *ngFor="let item of categorys" #chekedList class="item">
-                            <div style="display: flex; align-items: center;" (click)="category(item,chekedList)">
+                        <li *ngFor="let item of categorysSearch" #chekedList [ngClass]="{'checked': item.status}" class="item">
+                            <div style="display: flex; align-items: center;" (click)="category(chekedList, item)">
                                 <span class="checkbox">
                                     <i class="fa-solid fa-check check-icon"></i>
                                 </span>
-                                <span class="item-text">{{item}}</span>
+                                <span class="item-text">{{item.name}}</span>
                             </div>
                         </li>
                     
@@ -92,7 +92,10 @@
           </div>
   
           <div class="btns">
-              <button (click)="send()" [disabled]="forma.invalid">Crear</button>
+                <button (click)="send()" [disabled]="forma.invalid">
+                    <span>Crear</span>
+                    <span></span>
+                </button>
           </div>
   
       </div>

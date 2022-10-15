@@ -19,8 +19,21 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ProducFormComponent implements OnInit {
 
   openSelect: boolean = true;
+  loading:boolean = false;
+  menssage:string = 'Categorias';
 
-  categorys = [] = ['amor','parejas','dia del padre','dia del niño','cumpleaños'];
+  categorys: Icategory[] = [
+    {id: 1,name: 'amor', status: false},
+    {id: 2, name:'parejas', status: false},
+    {id: 3, name:'dia del padre', status: false},
+    {id: 4, name:'dia del niño', status: false},
+    {id: 5, name:'cumpleaños', status: false}];
+
+  categorysData: string[] = [];
+
+  categorysSearch: Icategory[] = [];
+
+  categorysResult: string[] = [];
 
   forma = new FormGroup({
     name    : new FormControl(``,{
@@ -33,7 +46,7 @@ export class ProducFormComponent implements OnInit {
     }),
     description: new FormControl('',{
       nonNullable: true,
-    })
+    }),
   });
 
   images:{file:File, src:string}[] = [];
@@ -45,7 +58,27 @@ export class ProducFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.categorys);
+    
+    this.categorysSearch = this.categorys;
+
+    if(this.categorysData.length > 0){
+      this.menssage = `${this.categorysData.length} selecionadas`;
+      this.categorysResult = this.categorysData;
+      for (let i = 0; i < this.categorys.length; i++) {
+        const element = this.categorys[i];
+        for (let j = 0; j < this.categorysData.length; j++) {
+          const elementData = this.categorysData[j];
+  
+          let indexOF = elementData.indexOf(element.name);
+          console.log(indexOF);
+          if (indexOF >= 0) {
+            element.status = true;
+          }
+          
+        }
+      }
+    }
+
   }
 
   get isNombreInvalid():boolean{
@@ -95,10 +128,31 @@ export class ProducFormComponent implements OnInit {
     });
   }
 
-  category(item: any, cheked:HTMLLIElement){
-    console.log(item);
-    console.log(cheked);
-    cheked.classList.toggle('checked');
+  category( cheked:HTMLLIElement, item: any){
+
+    let esta = cheked.classList.contains('checked');
+    if (esta) {
+      cheked.classList.remove('checked');
+      let indexOf = this.categorysResult.indexOf(item.name);
+      this.categorysResult.splice(indexOf,1);
+      this.menssage = `${this.categorysResult.length} selecionadas`;
+    } else {
+      cheked.classList.add('checked');
+      this.categorysResult.push(item.name);
+      this.menssage = `${this.categorysResult.length} selecionadas`;
+    }
+
+    console.log(this.categorysResult);
+
+  }
+
+  bucarFiltro(inSearch: string){
+  
+    let searchedVal = inSearch.toLowerCase();
+    this.categorysSearch = this.categorys.filter((data: any) => {
+      return data.name.toLowerCase().startsWith(searchedVal);
+    });
+
   }
 
   send(){
@@ -113,12 +167,20 @@ export class ProducFormComponent implements OnInit {
 
     this._dataProduct.createProduct(
       this.forma.getRawValue(),
-      this.images.map(val => val.file)
+      this.images.map(val => val.file),
+      this.categorysResult
     ).then(x => {
 
       console.log(x);
+
     })
 
   }
 
+}
+
+interface Icategory{
+  id: number,
+  name: string,
+  status: boolean
 }

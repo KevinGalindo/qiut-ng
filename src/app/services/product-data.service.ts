@@ -11,11 +11,16 @@ export class ProductDataService {
 
   constructor(private _apiService: ApiProductsService) { }
 
-  createProduct(product: Iproduct, files:File[]):Promise<boolean>{
+  createProduct(product: Iproduct, files:File[], categorys?: any[]):Promise<boolean>{
+
+    let productTmp = {
+      ...product,
+      categorys
+    }
 
     return new Promise((resolve, reject) => {
 
-      this._apiService.create(product, files).subscribe({
+      this._apiService.create(productTmp, files).subscribe({
         next: res => {
           console.log(res);
           this.list.push(product);
