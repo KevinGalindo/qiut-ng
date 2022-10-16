@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApiProductsService } from './api/api-products.service';
+import { ApiProductsService, IproductFormData } from './api/api-products.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +12,13 @@ export class ProductDataService {
   constructor(private _apiService: ApiProductsService) {
   }
 
-  createProduct(product: Iproduct, files:File[], categorys?: any[]):Promise<boolean>{
+  createProduct(product: IproductFormData, files:File[], categorys?: any[]):Promise<boolean>{
 
-    let productTmp = {
-      ...product,
-      categorys
-    }
+    
 
     return new Promise((resolve, reject) => {
 
-      this._apiService.create(productTmp, files).subscribe({
+      this._apiService.create(product, files).subscribe({
         next: res => {
           console.log(res);
           this.list.push(res);
@@ -48,14 +45,6 @@ export class ProductDataService {
 
   }
 
-}
-
-interface Iproduct{
-  name: string,
-  price: string,
-  type: string,
-  description?: string,
-  categorys?: any[]
 }
 
 interface IproductData{

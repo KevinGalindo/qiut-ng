@@ -15,7 +15,7 @@ export class ApiProductsService {
     return this._http.get<IproductData[]>('getproducts');
   }
 
-  create(data:Iproduct, files:File[]): Observable<any> {
+  create(data:IproductFormData, files:File[]): Observable<any> {
 
     let formData = new FormData();
 
@@ -30,11 +30,12 @@ export class ApiProductsService {
 
 }
 
-interface Iproduct{
+export interface IproductFormData{
   name: string,
   price: string,
-  description?: string,
-  categorys?: any[]
+  description: string,
+  type: string,
+  categorys: string[]
 }
 
 interface IproductData{

@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal.service';
 import { ProductDataService } from 'src/app/services/product-data.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { IproductFormData } from 'src/app/services/api/api-products.service';
 
 @Component({
   selector: 'app-produc-form',
@@ -30,7 +31,7 @@ export class ProducFormComponent implements OnInit {
     {id: 4, name:'dia del niño', status: false},
     {id: 5, name:'cumpleaños', status: false}];
 
-  categorysData: string[] = [];
+  categorysData: string[] = ['cumpleaños'];
 
   categorysSearch: Icategory[] = [];
 
@@ -169,8 +170,9 @@ export class ProducFormComponent implements OnInit {
     }
     
     this.loading = true;
-    let productTmp: Iproduct = {
+    let productTmp: IproductFormData = {
       ...this.forma.getRawValue(),
+      categorys: this.categorysResult,
       type: this.type
     }  
 
@@ -196,11 +198,4 @@ interface Icategory{
   id: number,
   name: string,
   status: boolean
-}
-
-interface Iproduct{
-  name: string,
-  price: string,
-  type: string,
-  description?: string
 }
