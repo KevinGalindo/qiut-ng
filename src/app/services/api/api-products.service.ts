@@ -11,8 +11,8 @@ export class ApiProductsService {
     private _http:HttpClient
   ) { }
 
-  getAll(){
-    return this._http.get('getproducts');
+  getAll(): Observable<IproductData[]>{
+    return this._http.get<IproductData[]>('getproducts');
   }
 
   create(data:Iproduct, files:File[]): Observable<any> {
@@ -35,4 +35,16 @@ interface Iproduct{
   price: string,
   description?: string,
   categorys?: any[]
+}
+
+interface IproductData{
+  id: number,
+  date: Date,
+  name: string,
+  price: string,
+  type: string,
+  user: number,
+  images: string[],
+  description?: string,
+  categorys?: string[],
 }

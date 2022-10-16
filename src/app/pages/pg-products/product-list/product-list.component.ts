@@ -10,23 +10,23 @@ import { ProductDataService } from 'src/app/services/product-data.service';
 })
 export class ProductListComponent implements OnInit {
 
-  @Input() cate:string = '';
+  // @Input() cate:string = 'algo';
+  cate:string | null= '';
   open:boolean = false;
 
-  products: any[] = [];
 
   constructor( private router: ActivatedRoute,
     public auth: ApiAccessService,
-    private _dataProduct: ProductDataService) {
+    public _dataProduct: ProductDataService) {
 
-    this.router.queryParams.subscribe();
+    this.cate = this.router.snapshot.paramMap.get('cate');
 
   }
 
   ngOnInit(): void {
 
-    // this.products = this._dataProduct.list;
     this._dataProduct.getProducts();
+    console.log(this.cate);
 
   }
 

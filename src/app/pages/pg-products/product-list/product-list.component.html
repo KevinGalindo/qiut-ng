@@ -1,12 +1,8 @@
 
-<div *ngIf="auth.isAuth()">
-    <button routerLink="agregar" >Agregar Producto</button>
-</div>
-
 <div class="products-list">
     <div class="list-cabecera">
-        <h3>Datalles</h3>
-        <a class="list-nuevo">
+        <h3>PRODUCTOS</h3>
+        <a *ngIf="auth.isAuth()" routerLink="agregar" class="list-nuevo">
             <span>Nuevo</span>
             <i class="fa-solid fa-dolly"></i>
         </a>
@@ -37,7 +33,7 @@
         <div class="conte">
             <div class="conte-conte">
                 <div class="conte-titulo">
-                    <h2>Detalles</h2>
+                    <h2>{{cate}}</h2>
                     <div class="conte-search">
                         <input type="text" placeholder="buscar..">
                         <span><i class="fa-solid fa-search"></i></span>
@@ -45,8 +41,9 @@
                 </div>
                 <div class="conten-ul">
                     
-                    <div class="main-card">
-                        <img src="assets/img/product.jpg" alt="producto.nombre">
+                    <div class="main-card" *ngFor="let product of _dataProduct.list">
+                        <img *ngIf="product.images.length > 0" src="http://localhost/qiut-api/media/products/{{product.id}}/{{product.images[0]}}" [alt]="product.name">
+                        <img *ngIf="product.images.length === 0" src="assets/img/products.jpg" [alt]="product.name">
                         <div class="buttons-tools">
                             <button [routerLink]="[]">Editar</button>
                             <button>borrar</button>
@@ -54,10 +51,10 @@
                         <div class="conte-content">
                             <div class="row">
                                 <div class="details">
-                                    <span>Nombre product</span>
-                                    <p>descripcion de un producto</p>
+                                    <span>{{product.name}}</span>
+                                    <p>{{product.description}}</p>
                                 </div>
-                                <div class="prince">$20.000</div>
+                                <div class="prince">{{product.price | currency:'COP':'symbol-narrow':'.0-0'}}</div>
                             </div>
                             <div class="buttons">
                                 <button [routerLink]="" >Ver</button>
