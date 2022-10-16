@@ -40,10 +40,8 @@
                     </div>
                 </div>
                 <div class="conten-ul">
-                    
                     <div class="main-card" *ngFor="let product of _dataProduct.list">
-                        <img *ngIf="product.images.length > 0" src="http://localhost/qiut-api/media/products/{{product.id}}/{{product.images[0]}}" [alt]="product.name">
-                        <img *ngIf="product.images.length === 0" src="assets/img/products.jpg" [alt]="product.name">
+                        <img [src]="product.imgDefault" [alt]="product.name">
                         <div class="buttons-tools">
                             <button [routerLink]="[]">Editar</button>
                             <button>borrar</button>

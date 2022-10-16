@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { PorductInfo } from 'src/app/models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,12 @@ export class ApiProductsService {
     private _http:HttpClient
   ) { }
 
-  getAll(): Observable<IproductData[]>{
-    return this._http.get<IproductData[]>('getproducts');
+  getAll(): Observable<PorductInfo[]>{
+    
+    return this._http.get<IApiProductData[]>('getproducts')
+    .pipe(map(results => {
+      return results.map(item => new PorductInfo(item));
+    }));
   }
 
   create(data:IproductFormData, files:File[]): Observable<any> {
@@ -38,14 +43,17 @@ export interface IproductFormData{
   categorys: string[]
 }
 
-interface IproductData{
+/**
+ * Estructura que retorna la API de php
+ */
+export interface IApiProductData{
   id: number,
-  date: Date,
+  date: string,
   name: string,
-  price: string,
+  price: number,
   type: string,
   user: number,
   images: string[],
-  description?: string,
-  categorys?: string[],
+  description: string,
+  categorys: string[],
 }

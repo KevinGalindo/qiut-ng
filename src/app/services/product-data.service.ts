@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { PorductInfo } from '../models/product';
 import { ApiProductsService, IproductFormData } from './api/api-products.service';
 
 @Injectable({
@@ -6,7 +7,7 @@ import { ApiProductsService, IproductFormData } from './api/api-products.service
 })
 export class ProductDataService {
 
-  list: IproductData[] =[];
+  list: PorductInfo[] =[];
   confirm = false;
 
   constructor(private _apiService: ApiProductsService) {
@@ -35,7 +36,7 @@ export class ProductDataService {
   getProducts(){
 
      if (!this.confirm) {
-        this._apiService.getAll().subscribe((resp:IproductData[]) =>{
+        this._apiService.getAll().subscribe(resp =>{
         console.log(resp);
         this.confirm = true;
         this.list = resp;
@@ -45,16 +46,4 @@ export class ProductDataService {
 
   }
 
-}
-
-interface IproductData{
-  id: number,
-  date: Date,
-  name: string,
-  price: string,
-  type: string,
-  user: number,
-  images: string[],
-  description?: string,
-  categorys?: string[],
 }
