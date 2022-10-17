@@ -12,6 +12,16 @@ export class ApiProductsService {
     private _http:HttpClient
   ) { }
 
+  get(id: string | null): Observable<ProductInfo>{
+    
+    return this._http.get<IApiProductData>(`getproducts/${id}`)
+    .pipe(map(result => {
+      return new ProductInfo(result);
+    }));
+
+  }
+
+  // Trae todos los productos de la api
   getAll(): Observable<ProductInfo[]>{
     
     return this._http.get<IApiProductData[]>('getproducts')
@@ -47,6 +57,7 @@ export interface IproductFormData{
  * Estructura que retorna la API de php
  */
 export interface IApiProductData{
+  map(arg0: (item: IApiProductData) => ProductInfo): any;
   id: number,
   date: string,
   name: string,

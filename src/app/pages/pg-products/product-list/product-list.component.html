@@ -35,12 +35,12 @@
                 <div class="conte-titulo">
                     <h2>{{_dataProduct.cate}}</h2>
                     <div class="conte-search">
-                        <input type="text" placeholder="buscar..">
+                        <input type="text" #inputSearchProduct (keyup)="_dataProduct.buscarProductService(inputSearchProduct.value)" placeholder="buscar..">
                         <span><i class="fa-solid fa-search"></i></span>
                     </div>
                 </div>
                 <div class="conten-ul">
-                    <div class="main-card" *ngFor="let product of _dataProduct.listProductsType">
+                    <div class="main-card" *ngFor="let product of _dataProduct.listProductsCate">
                         <img [src]="product.imgDefault" [alt]="product.name">
                         <div class="buttons-tools">
                             <button [routerLink]="[]">Editar</button>
@@ -55,7 +55,7 @@
                                 <div class="prince">{{product.price | currency:'COP':'symbol-narrow':'.0-0'}}</div>
                             </div>
                             <div class="buttons">
-                                <button [routerLink]="" >Ver</button>
+                                <button [routerLink]="[product.id]" >Ver</button>
                                 <button>Preguntar</button>
                             </div>
                         </div>

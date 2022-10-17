@@ -178,8 +178,7 @@ export class ProducFormComponent implements OnInit {
 
     this._dataProduct.createProduct(
       productTmp,
-      this.images.map(val => val.file),
-      this.categorysResult
+      this.images.map(val => val.file)
     ).then(x => {
 
       console.log(x);

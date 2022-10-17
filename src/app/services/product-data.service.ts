@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProductInfo } from '../models/product';
-import { ApiProductsService, IproductFormData } from './api/api-products.service';
+import { ApiProductsService, IApiProductData, IproductFormData } from './api/api-products.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,10 @@ export class ProductDataService {
 
   list: ProductInfo[] =[];
   listProductsType: ProductInfo[] = [];
+  listProductsCate: ProductInfo[] = [];
+
+  product: IApiProductData | any;
+
   cate: string = '';
   confirm = false;
 
@@ -16,7 +20,7 @@ export class ProductDataService {
   }
 
   // Este metodo crea un producto
-  createProduct(product: IproductFormData, files:File[], categorys?: any[]):Promise<boolean>{
+  createProduct(product: IproductFormData, files:File[]):Promise<boolean>{
 
     return new Promise((resolve, reject) => {
 
@@ -41,18 +45,38 @@ export class ProductDataService {
       this._apiService.getAll().subscribe(resp =>{
       console.log(resp);
       this.confirm = true;
-      this.listProductsType = this.list = resp;
+      this.listProductsCate = this.listProductsType = this.list = resp;
       });
     }
 
   }
 
+  getProduct(id: string | null){
+
+    this._apiService.get(id).subscribe(resp => {
+      console.log(resp);
+      this.product = resp;
+    });
+
+  }
+
+  // Filtrar productos por el valor type
   filtrarProductsType(type: string){
     
-    this.listProductsType = this.list.filter((data: ProductInfo) => {
+    this.listProductsCate = this.listProductsType = this.list.filter((data: ProductInfo) => {
 	    return data.type == type;
     });
-    console.log(this.listProductsType);
+
+  }
+
+  // Filtra producto por busqueda
+  buscarProductService(search: string){
+    
+    let searchVal = search.toLowerCase();
+
+    this.listProductsCate = this.listProductsType.filter((data: ProductInfo) => {
+	    return data.name.toLowerCase().startsWith(searchVal);
+    });
 
   }
 
