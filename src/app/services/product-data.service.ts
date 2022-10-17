@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PorductInfo } from '../models/product';
+import { ProductInfo } from '../models/product';
 import { ApiProductsService, IproductFormData } from './api/api-products.service';
 
 @Injectable({
@@ -7,15 +7,16 @@ import { ApiProductsService, IproductFormData } from './api/api-products.service
 })
 export class ProductDataService {
 
-  list: PorductInfo[] =[];
+  list: ProductInfo[] =[];
+  listProductsType: ProductInfo[] = [];
+  cate: string = '';
   confirm = false;
 
   constructor(private _apiService: ApiProductsService) {
   }
 
+  // Este metodo crea un producto
   createProduct(product: IproductFormData, files:File[], categorys?: any[]):Promise<boolean>{
-
-    
 
     return new Promise((resolve, reject) => {
 
@@ -33,16 +34,25 @@ export class ProductDataService {
     
   }
 
+  // Este metodo trae todos lo productos
   getProducts(){
 
-     if (!this.confirm) {
-        this._apiService.getAll().subscribe(resp =>{
-        console.log(resp);
-        this.confirm = true;
-        this.list = resp;
+    if (!this.confirm) {
+      this._apiService.getAll().subscribe(resp =>{
+      console.log(resp);
+      this.confirm = true;
+      this.listProductsType = this.list = resp;
       });
     }
 
+  }
+
+  filtrarProductsType(type: string){
+    
+    this.listProductsType = this.list.filter((data: ProductInfo) => {
+	    return data.type == type;
+    });
+    console.log(this.listProductsType);
 
   }
 

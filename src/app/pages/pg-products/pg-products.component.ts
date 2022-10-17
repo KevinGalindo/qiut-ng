@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProductDataService } from 'src/app/services/product-data.service';
 
 @Component({
   selector: 'app-pg-products',
@@ -8,7 +9,12 @@ import { Router } from '@angular/router';
 })
 export class PgProductsComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  cate: string = '';
+
+  constructor(
+    private router: Router,
+    public _dataService: ProductDataService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -16,6 +22,9 @@ export class PgProductsComponent implements OnInit {
   filter( cate: string ){
 
     this.router.navigate( ['/productos'], {queryParams: {cate}} );
+    this.cate = cate;
+    this._dataService.cate = cate;
+    this._dataService.filtrarProductsType(cate);
 
   }
 

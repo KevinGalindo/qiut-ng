@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { PorductInfo } from 'src/app/models/product';
+import { ProductInfo } from 'src/app/models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +12,11 @@ export class ApiProductsService {
     private _http:HttpClient
   ) { }
 
-  getAll(): Observable<PorductInfo[]>{
+  getAll(): Observable<ProductInfo[]>{
     
     return this._http.get<IApiProductData[]>('getproducts')
     .pipe(map(results => {
-      return results.map(item => new PorductInfo(item));
+      return results.map(item => new ProductInfo(item));
     }));
   }
 

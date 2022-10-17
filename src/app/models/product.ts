@@ -1,7 +1,7 @@
 import { environment } from "src/environments/environment";
 import { IApiProductData } from "../services/api/api-products.service";
 
-export class PorductInfo
+export class ProductInfo
 {
     
     public get id(): number { return this._data.id; }
