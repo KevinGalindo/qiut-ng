@@ -31,5 +31,26 @@ export class ProducInfoComponent implements OnInit {
     
   }
   
+  cambiarImg(img: HTMLImageElement, imgContainer: HTMLImageElement, contenedorImgSmal: HTMLDivElement){
+
+    let imgSmal = img.getAttribute('src');
+    let imgCon = imgContainer.getAttribute('src');
+    let imgsSmal = contenedorImgSmal.children;
+
+    for (let i = 0; i < imgsSmal.length; i++) {
+      const element = imgsSmal[i];
+  
+      element.classList.remove('active');
+    }
+
+    if(imgSmal != imgCon){
+
+      imgContainer.removeAttribute('src');
+      imgContainer.setAttribute('src', `${imgSmal}`);
+      img.classList.add('active');
+      
+    }
+
+  }
 
 }

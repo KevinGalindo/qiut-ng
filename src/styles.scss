@@ -669,6 +669,177 @@
 }
 
 /* ------------------------------------------------------------------------------- */
+// ProducInfo
+.product{
+    float: none;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    .product-smal-img{
+        float: none;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        overflow-x: auto;
+
+        img{
+            object-fit: cover;
+            height: 92px;
+            width: 92px;
+            margin: 10px 5px;
+            cursor: pointer;
+            display: block;
+            border-radius: 5px;
+            opacity: .6;
+            transition: opacity ease .3s;
+
+            &.active{
+                border: 2px solid #23692e;
+                opacity: 1;
+            }
+            &:hover{
+                opacity: 1;
+            }
+        }
+
+    }
+
+    .img-container{
+        float: right;
+        padding: 20px 0px;
+
+        img{
+            width: 100%;
+            border-radius: 5px;
+        }
+    }
+}
+
+.product-info {
+    
+    h2{
+        font-size: 30px;
+        font-weight: 400;
+        color: #333;
+        margin-bottom: .5rem;
+    }
+    h4{
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #57a764;
+        margin-bottom: .5rem;
+    
+    }
+    h3{
+        font-weight: 700;
+        color: #333;
+        margin-bottom: .5rem;
+    
+    }
+    p{
+        color: #515151;
+        margin-bottom: .5rem;
+    
+    }
+
+    .catergorias{
+        ul{
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-start;
+            color: #f1f1f1;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+
+            li{
+                margin: 4px 10px;
+                padding: 5px;
+                border-radius: 10px;
+                background: #57a764;
+                cursor: pointer;
+                transition: background ease .3s;
+
+                &:hover{
+                    background: #91d89d;
+                }
+            }
+        }
+    }
+
+    .comprar{
+        padding: 10px 25px;
+        border: 2px #57a764 solid;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #57a764;
+        transition: all ease .3s;
+        &:hover{
+            color: #fff;
+            background: #57a764;
+        }
+    }
+
+    .volver{
+        padding: 10px 25px;
+        border: 2px var(--color-red-danger) solid;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--color-red-danger);
+        margin-left: 1rem;
+        transition: all ease .3s;
+        &:hover{
+            color: #fff;
+            background: var(--color-red-danger);
+        }
+    }
+
+    .buttons-tools{
+        display: flex;
+        justify-content: space-around;
+        padding: 15px 0;
+        border-radius: 5px;
+        width: 100%;
+
+        button{
+            padding: 8px 18px;
+            text-transform: uppercase;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 3px;
+            color: #f1f1f1;
+            transition: all linear .3s;
+            &:first-child{
+                background: var(--color-grenn-azul);
+                &:hover{
+                    border: 1px solid var(--color-grenn-azul);
+                    background: transparent;
+                    color: var(--color-grenn-azul);
+                }
+            }
+            &:last-child{
+                background: var(--color-red-danger);
+                &:hover{
+                    border: 1px solid var(--color-red-danger);
+                    color: var(--color-red-danger);
+                    background: transparent;
+                }
+            }
+        }
+    }
+
+}
+
+
+/* ------------------------------------------------------------------------------- */
 // Access
 .form-logo{
     position: relative;
