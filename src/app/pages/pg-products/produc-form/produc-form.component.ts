@@ -6,6 +6,9 @@ import { ProductDataService } from 'src/app/services/product-data.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IproductFormData } from 'src/app/services/api/api-products.service';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
+import { ActivatedRoute } from '@angular/router';
+import { ProductInfo } from 'src/app/models/product';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-produc-form',
@@ -21,70 +24,60 @@ import { MultiSelectComponent } from './multi-select/multi-select.component';
 })
 export class ProducFormComponent implements OnInit {
 
-  openSelect: boolean = true;
   loading:boolean = false;
-  type:string = 'detalles';
-  menssage:string = 'Categorias';
-
-  categorys: Icategory[] = [
-    {id: 1,name: 'amor', status: false},
-    {id: 2, name:'parejas', status: false},
-    {id: 3, name:'dia del padre', status: false},
-    {id: 4, name:'dia del niño', status: false},
-    {id: 5, name:'cumpleaños', status: false}];
-
-  categorysData: string[] = ['cumpleaños'];
-
-  categorysSearch: Icategory[] = [];
-
-  categorysResult: string[] = [];
-
   forma = new FormGroup({
-    name    : new FormControl(``,{
-      nonNullable: true,
-      validators: [Validators.required]
-    }),
-    price : new FormControl('',{
-      nonNullable: true, 
-      validators: [Validators.required]
-    }),
-    description: new FormControl('',{
-      nonNullable: true,
-    }),
-    type: new FormControl('', { nonNullable: true, validators: Validators.required}),
-    categorys: new FormControl<string[]>(['cumpleaños'], { nonNullable: true, validators: Validators.required})
+    name:         new FormControl(``,{ nonNullable: true, validators: [Validators.required] }),
+    price:        new FormControl('',{ nonNullable: true, validators: [Validators.required]}),
+    description:  new FormControl('',{ nonNullable: true }),
+    type:         new FormControl('', { nonNullable: true, validators: Validators.required}),
+    categorys:    new FormControl<string[]>(['cumpleaños'], { nonNullable: true, validators: Validators.required})
   });
 
   images:{file:File, src:string}[] = [];
 
+  productEdit:ProductInfo|null = null;
+
   constructor(
     private _modal: DialogModalService,
     private _dataProduct: ProductDataService,
-    private _sanitizer:DomSanitizer
+    private _sanitizer:DomSanitizer,
+    private route: ActivatedRoute,
+    private _location:Location,
+    private _routeActived:ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    
-    this.categorysSearch = this.categorys;
+    // this.route.queryParamMap.subscribe(res => {
+    //   let id = res.get('id');
+    //   console.log(id);
+    // });
 
-    if(this.categorysData.length > 0){
-      this.menssage = `${this.categorysData.length} selecionadas`;
-      this.categorysResult = this.categorysData;
-      for (let i = 0; i < this.categorys.length; i++) {
-        const element = this.categorys[i];
-        for (let j = 0; j < this.categorysData.length; j++) {
-          const elementData = this.categorysData[j];
-  
-          let indexOF = elementData.indexOf(element.name);
-          console.log(indexOF);
-          if (indexOF >= 0) {
-            element.status = true;
-          }
-          
+    // this._routeActived.parent?.url.subscribe(res => {
+      
+    //   console.log(res);
+    // })
+
+    // this._routeActived.parent?.queryParams.subscribe(res => {
+    //   console.log(res);
+    // })
+    this._routeActived.parent?.paramMap.subscribe(res => {
+
+        let param:string|null = res.get('id');
+        if (param){
+          let id:number = Number.parseInt(param);
+            
+          this._dataProduct.getById(id).then(p => {
+
+            this.productEdit = p;
+
+            this.forma.setValue(p.getValuesForm());
+
+          }).catch(err => {
+            
+            console.error(err);
+          });
         }
-      }
-    }
-
+    })
   }
 
   get isNombreInvalid():boolean{
@@ -134,25 +127,9 @@ export class ProducFormComponent implements OnInit {
     });
   }
 
-  
-  bucarFiltro(inSearch: string){
-  
-    let searchedVal = inSearch.toLowerCase();
-    this.categorysSearch = this.categorys.filter((data: any) => {
-      return data.name.toLowerCase().startsWith(searchedVal);
-    });
-
-  }
-
-  cambiarType(type: string){
-    this.type = type;
-  }
-
   send(): void {
 
-    console.log(this.forma.getRawValue());
 
-    return;
     if (this.forma.invalid) {
       this._modal.error({
         content: 'Error en la informacion',
@@ -160,13 +137,28 @@ export class ProducFormComponent implements OnInit {
       })
       return;
     }
-    
+
+
+    if (this.productEdit){
+      // Editart
+      this.loading = true;
+      this._dataProduct.update(this.productEdit, this.forma.getRawValue()).then(() => {
+        this.loading = false;
+        this._location.back()
+      })
+      .catch(err => {
+
+        console.error(err);
+        this.loading = false;
+      });
+
+      return;
+    }
+
+
+    // Crear
     this.loading = true;
-    let productTmp: IproductFormData = {
-      ...this.forma.getRawValue(),
-      categorys: this.categorysResult,
-      type: this.type
-    }  
+    let productTmp = this.forma.getRawValue();
 
     this._dataProduct.createProduct(
       productTmp,
@@ -180,13 +172,8 @@ export class ProducFormComponent implements OnInit {
       })
 
     })
+    
 
   }
 
-}
-
-interface Icategory{
-  id: number,
-  name: string,
-  status: boolean
 }

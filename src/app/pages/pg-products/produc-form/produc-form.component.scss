@@ -46,6 +46,20 @@
     }
 }
 
+.types{
+    display: flex;
+    column-gap: 10px;
+    img{
+        height: 30px;
+        width: 30x;
+        border-radius: 50%;
+    }
+
+    input:checked {
+
+    }
+}
+
 .btn-main{
     background: var(--input-border-color);
     border: 1px solid transparent;

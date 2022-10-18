@@ -25,6 +25,7 @@ export class ApiProductsService {
     
     return this._http.get<IApiProductData[]>('getproducts')
     .pipe(map(results => {
+      console.log(results);
       return results.map(item => new ProductInfo(item));
     }));
   }
@@ -40,6 +41,10 @@ export class ApiProductsService {
     });
 
     return this._http.post('products', formData);
+  }
+
+  update(id:number, data:IproductFormData): Observable<IApiProductData|false> {
+    return this._http.put<IApiProductData|false>(`products/${id}`, data)
   }
 
 }

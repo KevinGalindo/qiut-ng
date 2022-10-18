@@ -44,39 +44,23 @@
 
                 <!-- Multi select -->
                 <app-multi-select [categories]="forma.controls.categorys.getRawValue()"></app-multi-select>
-                <!-- <div class="select-container">
-                    <div [ngClass]="{'open': openSelect}" 
-                         class="select-btn"
-                         (click)="openSelect = !openSelect">
-                        <span class="btn-text">{{menssage}}</span>
-                        
-                        <span class="arrow-dwn">
-                            <i class="fa-solid fa-chevron-down"></i>
-                        </span>
-                    </div>
-            
-                    <ul class="list-items">
-        
-                        <li class="item">
-                            <div class="search">
-                                <i class="fa-solid fa-search"></i>
-                                <input type="text" #inSearch (keyup)="bucarFiltro(inSearch.value)" placeholder="Buscar...">
-                            </div>
-                        </li>
-                        <li *ngFor="let item of categorysSearch" #chekedList [ngClass]="{'checked': item.status}" class="item">
-                            <div style="display: flex; align-items: center;" (click)="category(chekedList, item)">
-                                <span class="checkbox">
-                                    <i class="fa-solid fa-check check-icon"></i>
-                                </span>
-                                <span class="item-text">{{item.name}}</span>
-                            </div>
-                        </li>
-                    
-                    </ul>
-                </div> -->
+                <div class="types">
+                    <label>
+                        <input type="radio" formControlName="type" value="detalles">
+                        <img class="category-img" src="assets/img/detalles.jpg" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" formControlName="type" value="tasas">
+                        <img class="category-img" src="assets/img/tasas.jpg" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" formControlName="type" value="camisas">
+                        <img class="category-img" src="assets/img/camisas.jpg" alt="">
+                    </label>
+                </div>
 
                 <!-- Type -->
-                <div class="section-category">
+                <!-- <div class="section-category">
                     <span class="input-titles">Tipo</span>
                     <div class="category-flex">
                 
@@ -114,9 +98,9 @@
                             </li>
                         
                         </ul>
-                
                     </div>
-                </div>
+                </div> -->
+
 
                 <!-- Galeria -->
                 <div>

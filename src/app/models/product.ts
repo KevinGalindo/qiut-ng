@@ -1,5 +1,5 @@
 import { environment } from "src/environments/environment";
-import { IApiProductData } from "../services/api/api-products.service";
+import { IApiProductData, IproductFormData } from "../services/api/api-products.service";
 
 export class ProductInfo
 {
@@ -22,7 +22,24 @@ export class ProductInfo
         return `${environment.UrlApi}/media/products/${this.id}/${this._data.images[0] || 'default'}`;
     }
 
-    getValuesForm(){
-        this._data;
+    /**
+     * Retorna los varoles para le formulario de datos
+     */
+    getValuesForm(): IproductFormData{
+        return {
+            name: this._data.name,
+            description: this._data.description,
+            price: this._data.price.toString(),
+            categorys: this._data.categorys,
+            type: this._data.type
+        }
+    }
+
+    setData(data:IApiProductData): void {
+        this._data = data;
+    }
+
+    getData(){
+        return this._data;
     }
 }

@@ -30,7 +30,7 @@ export class MultiSelectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.categories)
+
   }
 
   onClickMenu(): void {

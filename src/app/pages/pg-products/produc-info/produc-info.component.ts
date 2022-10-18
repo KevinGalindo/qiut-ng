@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProductDataService } from 'src/app/services/product-data.service';
 import { ProductInfo } from 'src/app/models/product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ApiAccessService } from 'src/app/services/api/api-access.service';
 
 @Component({
@@ -12,12 +12,15 @@ import { ApiAccessService } from 'src/app/services/api/api-access.service';
   standalone: true,
   templateUrl: './produc-info.component.html',
   styleUrls: ['./produc-info.component.scss'],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
 })
 export class ProducInfoComponent implements OnInit, AfterViewInit {
   
   product!: ProductInfo;
   status:"loading" | "load" | "error" = "error";
+
+  edit:boolean = false;
+  
 
   @ViewChild('contenedorImgSmal') ref:any
 
@@ -37,7 +40,7 @@ export class ProducInfoComponent implements OnInit, AfterViewInit {
         this._dataProduct.getById(id).then(p => {
           this.product = p;
           this.status = "load";
-          console.log(this.product);
+
         }).catch(err => {
           
           this.status = "error";
@@ -53,7 +56,6 @@ export class ProducInfoComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-    console.log('Ref', this.ref);
   }
   
   ngOnInit(): void {

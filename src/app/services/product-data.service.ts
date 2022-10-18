@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { ResolveEnd } from '@angular/router';
+import { zip } from 'rxjs';
 import { ProductInfo } from '../models/product';
 import { ApiProductsService, IApiProductData, IproductFormData } from './api/api-products.service';
 
@@ -81,6 +83,25 @@ export class ProductDataService {
     });
   }
 
+  update(product: ProductInfo, data:IproductFormData): Promise<void> {
+    return new Promise((resolve, reject ) => {
+
+      this._apiService.update(product.id, data).subscribe({
+        next: res => {
+
+          if (res){
+            this.list.find(x => x.id == product.id)?.setData(res);
+          }
+
+          resolve();
+        },
+        error: err => {
+          reject(err);
+        }
+      })
+
+    });
+  }
 
 
 

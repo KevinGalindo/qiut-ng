@@ -6,7 +6,14 @@ import { PgProductsComponent } from './pg-products.component';
 const routes: Routes = [
   { path: '', component: PgProductsComponent},
   { path: 'agregar', loadComponent:() => import('./produc-form/produc-form.component').then(x => x.ProducFormComponent), canActivate: [ AuthGuard ]},
-  { path: ':id', loadComponent:() => import('./produc-info/produc-info.component').then(x => x.ProducInfoComponent)},
+  { 
+    path: ':id',
+    loadComponent:() => import('./produc-info/produc-info.component').then(x => x.ProducInfoComponent),
+    children: [
+      { path: 'editar', loadComponent:() => import('./produc-form/produc-form.component').then(x => x.ProducFormComponent), canActivate: [ AuthGuard ] }
+    ]
+  
+  },
 ];
 
 @NgModule({
