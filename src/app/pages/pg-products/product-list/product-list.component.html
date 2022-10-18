@@ -1,3 +1,4 @@
+<app-list-categories></app-list-categories>
 
 <div class="products-list">
     <div class="list-cabecera">
@@ -9,61 +10,52 @@
     </div>
 
     <div class="seccion">
-        <div class="aside">
-            <div class="aside-conte">
-                <div class="aisde-logo"><img src="assets/img/abejita.png" alt="abejita"></div>
-                <div [ngClass]="{'active': open}" class="aside-titulo" (click)="open = !open">
-                    <strong>FILTRAR</strong>
-                    <span><i class="fa-solid fa-caret-right"></i></span>
-                </div>
-                <div [ngClass]="{'active': open}" class="aside-list">
-                    <ul class="aside-ul">
-                        <li>
-                            <input #text type="text" placeholder="Buscar...">
-                            <span><i class="fa-solid fa-search"></i></span>
-                        </li>
-                        <li>
-                            <div >Amistad</div>
-                            <span><i class="fa-solid fa-chevron-right"></i></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <app-list-filter></app-list-filter>
         <div class="conte">
             <div class="conte-conte">
                 <div class="conte-titulo">
                     <h2>{{_dataProduct.cate}}</h2>
+
+                    <!-- Iinput buscar -->
                     <div class="conte-search">
                         <input type="text" #inputSearchProduct (keyup)="_dataProduct.buscarProductService(inputSearchProduct.value)" placeholder="buscar..">
                         <span><i class="fa-solid fa-search"></i></span>
                     </div>
                 </div>
-                <div class="conten-ul">
-                    <div class="main-card" *ngFor="let product of _dataProduct.listProductsCate">
-                        <img [src]="product.imgDefault" [alt]="product.name">
-                        <div *ngIf="_AuthService.isAuth()" class="buttons-tools">
-                            <button [routerLink]="[]">Editar</button>
-                            <button>borrar</button>
-                        </div>
-                        <div class="conte-content">
-                            <div class="row">
-                                <div class="details">
-                                    <span>{{product.name}}</span>
-                                    <p>{{product.description}}</p>
-                                </div>
-                                <div class="prince">{{product.price | currency:'COP':'symbol-narrow':'.0-0'}}</div>
+
+                <!-- Lista de productos -->
+                <ng-container *ngIf="!loading; else divLoading">
+                    <div class="conten-ul">
+                        <div class="main-card" *ngFor="let product of list">
+                            <img [src]="product.imgDefault" [alt]="product.name">
+                            <div *ngIf="_AuthService.isAuth()" class="buttons-tools">
+                                <button [routerLink]="[]">Editar</button>
+                                <button>borrar</button>
                             </div>
-                            <div class="buttons">
-                                <button [routerLink]="[product.id]" >Ver</button>
-                                <button>Preguntar</button>
+                            <div class="conte-content">
+                                <div class="row">
+                                    <div class="details">
+                                        <span>{{product.name}}</span>
+                                        <p>{{product.description}}</p>
+                                    </div>
+                                    <div class="prince">{{product.price | currency:'COP':'symbol-narrow':'.0-0'}}</div>
+                                </div>
+                                <div class="buttons">
+                                    <button [routerLink]="[product.id]" >Ver</button>
+                                    <button>Preguntar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                </div>
+                </ng-container>
+                
             </div>
         </div>
     </div>
 
 </div>
+
+<!-- API el loading  -->
+<ng-template #divLoading>
+    <h2>Cargando</h2>
+</ng-template>

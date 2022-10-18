@@ -1,0 +1,13 @@
+@media (min-width: 768px){
+.aside{
+    flex: none;
+    width: 320px;
+    max-width: 100%;
+
+    .aside-conte{
+        .aside-titulo{
+            padding: 15px;
+        }   
+    }
+}
+}

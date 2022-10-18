@@ -43,7 +43,8 @@
                 </div>
 
                 <!-- Multi select -->
-                <div class="select-container">
+                <app-multi-select [categories]="forma.controls.categorys.getRawValue()"></app-multi-select>
+                <!-- <div class="select-container">
                     <div [ngClass]="{'open': openSelect}" 
                          class="select-btn"
                          (click)="openSelect = !openSelect">
@@ -72,7 +73,7 @@
                         </li>
                     
                     </ul>
-                </div>
+                </div> -->
 
                 <!-- Type -->
                 <div class="section-category">
@@ -128,7 +129,11 @@
           </div>
   
           <div class="btns">
-                <button (click)="send()" [disabled]="forma.invalid">
+                <!-- <button (click)="send()" [disabled]="forma.invalid">
+                    <span *ngIf="!loading">Crear</span>
+                    <span><i *ngIf="loading" class="fa-solid fa-circle-notch fa-spin"></i></span>
+                </button> -->
+                <button (click)="send()">
                     <span *ngIf="!loading">Crear</span>
                     <span><i *ngIf="loading" class="fa-solid fa-circle-notch fa-spin"></i></span>
                 </button>

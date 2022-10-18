@@ -1,0 +1,117 @@
+.multi-select{
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    padding: .5em 1em;
+    
+    &.open{
+        .buscador {
+
+            display: grid;
+            height: 250px;
+            grid-template-rows: auto 1fr;
+            row-gap: .5em;
+            animation: box-open;
+            animation-duration: .3s;
+        }
+
+        .control .arrow-dwn {
+            transform: rotate(-180deg);
+            transition: all 0.3s;
+        }
+
+
+    }
+
+    .control{
+        display: grid;
+        grid-template-columns: 1fr auto;
+
+    }
+
+    .buscador{
+        width: 100%;
+        height: 0;
+        display: none;
+        padding: .3em;
+
+        .search{
+            position: relative;
+
+            i{
+                position: absolute;
+                left: 15px;
+                line-height: 53px;
+                color: #999;
+                font-size: 20px;
+            }
+
+            input{
+                height: 53px;
+                width: 100%;
+                font-size: 17px;
+                outline: none;
+                border-radius: 5px;
+                padding: 0 15px 0 43px;
+                border-bottom-width: 2px;
+                transition: border-color ease 0.3s;
+
+                &:focus{
+                    border-color: var(--input-border-color);
+                }
+            }
+        }
+
+        ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            row-gap: .4em;
+            li{
+                padding: .2em;
+                text-transform: capitalize;
+                display: flex;
+                column-gap: .3em;
+        
+                .checkbox {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 16px;
+                    width: 16px;
+                    border-radius: 4px;
+                    margin-right: 12px;
+                    border: 1.5px solid #c0c0c0;
+                    transition: all 0.3s ease-in-out;
+        
+
+
+                    &.checked {
+                        background-color: #4070f4;
+                        border-color: #4070f4;
+            
+                        .check-icon {
+                            transform: scale(1);
+                        }
+                    }
+
+                    .check-icon {
+                        color: #fff;
+                        font-size: 11px;
+                        transform: scale(0);
+                        transition: all 0.3s ease-in-out;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+@keyframes box-open {
+    from {height: 0; overflow: hidden; }
+    to {height: 230px;}
+  }

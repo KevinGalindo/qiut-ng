@@ -7,16 +7,38 @@ import { ApiProductsService, IApiProductData, IproductFormData } from './api/api
 })
 export class ProductDataService {
 
-  list: ProductInfo[] =[];
+  private _loaded:boolean = false;
+
+  /** Alamcenos las lista de los productos cargados de la API */
+  list: ProductInfo[] = [];
   listProductsType: ProductInfo[] = [];
   listProductsCate: ProductInfo[] = [];
 
+  /** Eliminar */
   product: IApiProductData | any;
 
   cate: string = '';
   confirm = false;
 
   constructor(private _apiService: ApiProductsService) {
+  }
+
+  /**
+   * Carga los datos de la API para guardarlos en local y no recargar los datos de la API Casa ves que se abra la ventana
+   */
+  loadData():Promise<void>{
+    return new Promise((resolve, reject) => {
+
+      if (this._loaded){
+        resolve();
+      }else{
+        this._apiService.getAll().subscribe(resp =>{
+          this.list = resp;
+          this._loaded = true;
+          resolve();
+        });
+      }
+    });
   }
 
   // Este metodo crea un producto
@@ -38,20 +60,60 @@ export class ProductDataService {
     
   }
 
-  // Este metodo trae todos lo productos
-  getProducts(){
+  getById(id:number): Promise<ProductInfo> {
+    return new Promise((resolve, reject) => {
 
-    if (!this.confirm) {
-      this._apiService.getAll().subscribe(resp =>{
-      console.log(resp);
-      this.confirm = true;
-      this.listProductsCate = this.listProductsType = this.list = resp;
-      });
-    }
+      let product: ProductInfo | undefined = this.list.find(x => x.id);
 
+      if (product){
+
+        resolve(product);
+      } else {
+        this._apiService.get(id).subscribe({
+          next: res => {
+            resolve(res);
+          },
+          error: err => {
+            reject(err);
+          }
+        });
+      }
+    });
   }
 
-  getProduct(id: string | null){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /******************
+   * Esto no va aca
+   */
+  getProduct(id: number){
 
     this._apiService.get(id).subscribe(resp => {
       console.log(resp);

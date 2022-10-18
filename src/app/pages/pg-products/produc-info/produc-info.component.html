@@ -1,32 +1,53 @@
+<div #test>
 
-<div class="conten">
-    <div class="product">
-        <div class="product-smal-img" #contenedorImgSmal>
-            <img *ngFor="let img of _dataProduct.product.images" 
-                 (click)="cambiarImg(imgSmal, imgContainer, contenedorImgSmal)"
-                 [src]="img"
-                 #imgSmal>
-        </div>
-        <div class="img-container">
-            <img #imgContainer [src]="_dataProduct.product.imgDefault" [alt]=" _dataProduct.product.name">
-        </div>
-    </div>
-    
-    <div class="product-info">
-        <h2>{{_dataProduct.product.name}}</h2>
-        <h4>{{_dataProduct.product.price | currency:'COP':'symbol-narrow':'.0-0'}}</h4>
-        <h3>Descrpcion</h3>
-        <p>{{_dataProduct.product.description}}.</p>
-        <div class="catergorias">
-            <ul>
-                <li *ngFor="let filtro of _dataProduct.product.categorys">{{filtro}}</li>
-            </ul>
-        </div>
-        <button class="comprar">Comprar</button>
-        <button (click)="volver()" class="volver">Volver</button>
-        <div *ngIf="_AuthService.isAuth()" class="buttons-tools">
-            <button>Editar</button>
-            <button>borrar</button>
-        </div>
-    </div>
 </div>
+<ng-container [ngSwitch]="status">
+
+    <!-- Pantalla de carga -->
+    <div *ngSwitchCase="'loading'">
+        <h2>Cargando</h2>
+    </div>
+
+    <!-- Información del producto -->
+    <div *ngSwitchCase="'load'">
+        <div class="conten">
+            <div class="product">
+                <div class="product-smal-img" #contenedorImgSmal>
+                    <img *ngFor="let img of product.images; let first = first;" 
+                        (click)="cambiarImg(imgSmal, imgContainer, contenedorImgSmal)"
+                        [ngClass]="first ? 'active':''"
+                        [src]="img"
+                        #imgSmal>
+                </div>
+                <div class="img-container">
+                    <img #imgContainer [src]="product.imgDefault" [alt]="product.name">
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h2>{{product.name}}</h2>
+                <h4>{{product.price | currency:'COP':'symbol-narrow':'.0-0'}}</h4>
+                <h3>Descrpcion</h3>
+                <p>{{product.description}}.</p>
+                <div class="catergorias">
+                    <ul>
+                        <li *ngFor="let filtro of product.categorys">{{filtro}}</li>
+                    </ul>
+                </div>
+                <button class="comprar">Comprar</button>
+                <button (click)="volver()" class="volver">Volver</button>
+                <div *ngIf="_AuthService.isAuth()" class="buttons-tools">
+                    <button>Editar</button>
+                    <button>borrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Error del producot  "No existe" -->
+    <div *ngSwitchCase="'error'">
+        <h2>Producto no encotrado</h2>
+    </div>
+
+</ng-container>

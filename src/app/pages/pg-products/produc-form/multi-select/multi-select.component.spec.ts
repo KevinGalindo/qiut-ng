@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PgProductsComponent } from './pg-products.component';
+import { MultiSelectComponent } from './multi-select.component';
 
-describe('PgProductsComponent', () => {
-  let component: PgProductsComponent;
-  let fixture: ComponentFixture<PgProductsComponent>;
+describe('MultiSelectComponent', () => {
+  let component: MultiSelectComponent;
+  let fixture: ComponentFixture<MultiSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PgProductsComponent ]
+      imports: [ MultiSelectComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PgProductsComponent);
+    fixture = TestBed.createComponent(MultiSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

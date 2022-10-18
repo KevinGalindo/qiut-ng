@@ -1,0 +1,35 @@
+<div class="multi-select" [ngClass]="openClass">
+    <!-- Label Botton select -->
+    <div class="control">
+        <span class="btn-text">
+            <ng-container *ngIf="categories.length > 0; else nolist">
+                {{categories.length}} Seleccionadas
+            </ng-container>
+            <ng-template #nolist>
+                Seleccionar categoría
+            </ng-template>
+        </span>
+        <span class="arrow-dwn" (click)="onClickMenu()">
+            <i class="fa-solid fa-chevron-down"></i>
+        </span>
+    </div>
+
+    <div class="buscador" >
+        <div class="input-control">
+            <div class="search">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Buscar..." [(ngModel)]="search">
+            </div>
+        </div>
+        <ul>
+            <li *ngFor="let item of listCateogries" (click)="itemClick(item)">
+                <div class="checkbox" [ngClass]="isChecken(item)">
+                    <i class="fa-solid fa-check check-icon"></i>
+                </div>
+                <div class="name">
+                    {{item.name}}
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

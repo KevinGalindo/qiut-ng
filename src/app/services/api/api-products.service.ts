@@ -12,13 +12,12 @@ export class ApiProductsService {
     private _http:HttpClient
   ) { }
 
-  get(id: string | null): Observable<ProductInfo>{
+  get(id: number): Observable<ProductInfo>{
     
     return this._http.get<IApiProductData>(`getproducts/${id}`)
     .pipe(map(result => {
       return new ProductInfo(result);
     }));
-
   }
 
   // Trae todos los productos de la api

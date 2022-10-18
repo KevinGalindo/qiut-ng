@@ -9,10 +9,10 @@ import { ProductListComponent } from './product-list/product-list.component';
 @NgModule({
   declarations: [
     PgProductsComponent,
-    ProductListComponent
   ],
   imports: [
     CommonModule,
+    ProductListComponent,
     PgProductsRoutingModule
   ]
 })

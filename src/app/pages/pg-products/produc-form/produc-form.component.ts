@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal.service';
 import { ProductDataService } from 'src/app/services/product-data.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IproductFormData } from 'src/app/services/api/api-products.service';
+import { MultiSelectComponent } from './multi-select/multi-select.component';
 
 @Component({
   selector: 'app-produc-form',
@@ -14,7 +15,8 @@ import { IproductFormData } from 'src/app/services/api/api-products.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MultiSelectComponent
   ],
 })
 export class ProducFormComponent implements OnInit {
@@ -49,6 +51,8 @@ export class ProducFormComponent implements OnInit {
     description: new FormControl('',{
       nonNullable: true,
     }),
+    type: new FormControl('', { nonNullable: true, validators: Validators.required}),
+    categorys: new FormControl<string[]>(['cumpleaños'], { nonNullable: true, validators: Validators.required})
   });
 
   images:{file:File, src:string}[] = [];
@@ -130,22 +134,7 @@ export class ProducFormComponent implements OnInit {
     });
   }
 
-  category( cheked:HTMLLIElement, item: any){
-
-    let esta = cheked.classList.contains('checked');
-    if (esta) {
-      cheked.classList.remove('checked');
-      let indexOf = this.categorysResult.indexOf(item.name);
-      this.categorysResult.splice(indexOf,1);
-      this.menssage = `${this.categorysResult.length} selecionadas`;
-    } else {
-      cheked.classList.add('checked');
-      this.categorysResult.push(item.name);
-      this.menssage = `${this.categorysResult.length} selecionadas`;
-    }
-
-  }
-
+  
   bucarFiltro(inSearch: string){
   
     let searchedVal = inSearch.toLowerCase();
@@ -159,8 +148,11 @@ export class ProducFormComponent implements OnInit {
     this.type = type;
   }
 
-  send(){
+  send(): void {
 
+    console.log(this.forma.getRawValue());
+
+    return;
     if (this.forma.invalid) {
       this._modal.error({
         content: 'Error en la informacion',

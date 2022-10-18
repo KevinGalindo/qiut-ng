@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
 
@@ -14,24 +14,51 @@ import { ApiAccessService } from 'src/app/services/api/api-access.service';
   styleUrls: ['./produc-info.component.scss'],
   imports: [CommonModule],
 })
-export class ProducInfoComponent implements OnInit {
+export class ProducInfoComponent implements OnInit, AfterViewInit {
+  
+  product!: ProductInfo;
+  status:"loading" | "load" | "error" = "error";
 
-  id: string | null = null;
-  product: ProductInfo[] = [];
+  @ViewChild('contenedorImgSmal') ref:any
 
   constructor(public _dataProduct: ProductDataService,
     private route: ActivatedRoute,
     private location: Location,
     public _AuthService: ApiAccessService
   ) {
+    
+    this._dataProduct.loadData().then(() => {
+      let param:string|null = this.route.snapshot.paramMap.get('id');
+    
+      if (param &&  param.match('[0-9]+')){
 
-    this.id = this.route.snapshot.paramMap.get('id');
+        let id:number = Number.parseInt(param);
+        
+        this._dataProduct.getById(id).then(p => {
+          this.product = p;
+          this.status = "load";
+          console.log(this.product);
+        }).catch(err => {
+          
+          this.status = "error";
+          console.error(err);
+        });
+      }
+    }).catch(err => {
+      console.error(err);
+    })
+    
 
+
+
+  }
+  ngAfterViewInit(): void {
+    console.log('Ref', this.ref);
   }
   
   ngOnInit(): void {
 
-    this._dataProduct.getProduct(this.id);
+    // this._dataProduct.getProduct(this.id);
     
   }
   
