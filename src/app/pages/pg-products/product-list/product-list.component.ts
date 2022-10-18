@@ -17,7 +17,8 @@ export class ProductListComponent implements OnInit {
 
   constructor( private router: ActivatedRoute,
     public auth: ApiAccessService,
-    public _dataProduct: ProductDataService
+    public _dataProduct: ProductDataService,
+    public _AuthService: ApiAccessService
   ) {
   }
 

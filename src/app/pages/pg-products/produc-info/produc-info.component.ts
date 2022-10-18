@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
 
 import { ProductDataService } from 'src/app/services/product-data.service';
 import { ProductInfo } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
+import { ApiAccessService } from 'src/app/services/api/api-access.service';
 
 @Component({
   selector: 'app-produc-info',
@@ -18,7 +20,9 @@ export class ProducInfoComponent implements OnInit {
   product: ProductInfo[] = [];
 
   constructor(public _dataProduct: ProductDataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location,
+    public _AuthService: ApiAccessService
   ) {
 
     this.id = this.route.snapshot.paramMap.get('id');
@@ -51,6 +55,10 @@ export class ProducInfoComponent implements OnInit {
       
     }
 
+  }
+
+  volver(){
+    this.location.back();
   }
 
 }

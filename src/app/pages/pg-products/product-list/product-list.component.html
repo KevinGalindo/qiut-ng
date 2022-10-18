@@ -42,7 +42,7 @@
                 <div class="conten-ul">
                     <div class="main-card" *ngFor="let product of _dataProduct.listProductsCate">
                         <img [src]="product.imgDefault" [alt]="product.name">
-                        <div class="buttons-tools">
+                        <div *ngIf="_AuthService.isAuth()" class="buttons-tools">
                             <button [routerLink]="[]">Editar</button>
                             <button>borrar</button>
                         </div>
