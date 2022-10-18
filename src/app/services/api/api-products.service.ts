@@ -43,8 +43,17 @@ export class ApiProductsService {
     return this._http.post('products', formData);
   }
 
-  update(id:number, data:IproductFormData): Observable<IApiProductData|false> {
-    return this._http.put<IApiProductData|false>(`products/${id}`, data)
+  update(id:number, data:IproductFormData, files:File[]): Observable<IApiProductData|false> {
+
+    let formData = new FormData();
+
+    formData.append('data', JSON.stringify(data));
+
+    files.forEach((f, i) => {
+      formData.append(`img-${i}`, f);
+    });
+
+    return this._http.put<IApiProductData|false>(`products/${id}`, formData)
   }
 
 }
