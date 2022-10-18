@@ -83,10 +83,10 @@ export class ProductDataService {
     });
   }
 
-  update(product: ProductInfo, data:IproductFormData, files:File[]): Promise<void> {
+  update(product: ProductInfo, data:IproductFormData, files:File[], deleteImgs:string[]): Promise<void> {
     return new Promise((resolve, reject ) => {
 
-      this._apiService.update(product.id, data, files).subscribe({
+      this._apiService.update(product.id, data, files, deleteImgs).subscribe({
         next: res => {
 
           if (res){

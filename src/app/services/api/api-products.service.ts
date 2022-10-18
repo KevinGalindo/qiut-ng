@@ -35,6 +35,8 @@ export class ApiProductsService {
     let formData = new FormData();
 
     formData.append('data', JSON.stringify(data));
+    
+
 
     files.forEach((f, i) => {
       formData.append(`img-${i}`, f);
@@ -43,11 +45,12 @@ export class ApiProductsService {
     return this._http.post('products', formData);
   }
 
-  update(id:number, data:IproductFormData, files:File[]): Observable<IApiProductData|false> {
+  update(id:number, data:IproductFormData, files:File[],  deleteImgs: string[]): Observable<IApiProductData|false> {
 
     let formData = new FormData();
 
     formData.append('data', JSON.stringify(data));
+    formData.append('deleteImgs', JSON.stringify(deleteImgs));
 
     files.forEach((f, i) => {
       formData.append(`img-${i}`, f);

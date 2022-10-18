@@ -142,7 +142,7 @@ export class ProducFormComponent implements OnInit {
     if (this.productEdit){
       // Editart
       this.loading = true;
-      this._dataProduct.update(this.productEdit, this.forma.getRawValue(), this.images.map(val => val.file)).then(() => {
+      this._dataProduct.update(this.productEdit, this.forma.getRawValue(), this.images.map(val => val.file), []).then(() => {
         this.loading = false;
         this._location.back()
       })
