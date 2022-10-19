@@ -36,7 +36,7 @@
                 <button (click)="volver()" class="volver">Volver</button>
                 <div *ngIf="_AuthService.isAuth()" class="buttons-tools">
                     <button routerLink="editar">Editar</button>
-                    <button>borrar</button>
+                    <button (click)="DeleteProduct()">borrar</button>
                 </div>
             </div>
         </div>

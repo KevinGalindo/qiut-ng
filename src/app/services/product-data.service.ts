@@ -99,6 +99,26 @@ export class ProductDataService {
     });
   }
 
+  deleteProduct(id: number): Promise<void>{
+    return new Promise((resolve, reject) => {
+
+    this._apiService.dalete(id).subscribe({
+      next: res => {
+
+        if (res) {
+          let index = this.list.findIndex( x => x.id == id );
+          this.list.splice(index,1);
+        }
+        resolve();
+      },
+      error: err => {
+        reject(err);
+      }
+    })
+
+    });
+  }
+
 
 
 

@@ -58,6 +58,10 @@ export class ApiProductsService {
     return this._http.put<IApiProductData|false>(`products/${id}`, formData)
   }
 
+  dalete(id: number){
+    return this._http.delete(`products/${id}`);
+  }
+
 }
 
 export interface IproductFormData{

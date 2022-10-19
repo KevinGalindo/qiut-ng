@@ -33,10 +33,11 @@ export class ProducFormComponent implements OnInit {
     price:        new FormControl('',{ nonNullable: true, validators: [Validators.required]}),
     description:  new FormControl('',{ nonNullable: true }),
     type:         new FormControl('', { nonNullable: true, validators: Validators.required}),
-    categorys:    new FormControl<string[]>([], { nonNullable: true, validators: Validators.required})
+    categorys:    new FormControl<string[]>([], { nonNullable: true})
   });
 
-  images:{file:File, src:string}[] = [];
+  images:{file?:File, src:string}[] = [];
+  imagesDelete: string[] = [];
 
   productEdit:ProductInfo|null = null;
 
@@ -61,6 +62,9 @@ export class ProducFormComponent implements OnInit {
         this._dataProduct.getById(id).then(p => {
 
           this.productEdit = p;
+          this.images = p.images.map(x => {
+            return {src: x}
+          });
 
           this.forma.setValue(p.getValuesForm());
 
@@ -120,8 +124,30 @@ export class ProducFormComponent implements OnInit {
     });
   }
 
+  loadDataProduct(){
+    if(this.productEdit){
+      this.images = this.productEdit.images.map(x => {
+        return {src: x}
+      });
+  
+      this.forma.setValue(this.productEdit.getValuesForm());
+      this.imagesDelete = [];
+    }
+  }
+
+  deleteImages(id: number){
+    console.log(id);
+  
+    let imgInfo = this.images[id];
+    if(!imgInfo.file){
+      this.imagesDelete.push(this.images[id].src.replace(/^.*(\\|\/|\:)/, ''));
+    }
+    this.images.splice(id,1);
+  }
+
   send(): void {
 
+    console.log(this.forma);
     if (this.forma.invalid) {
       this._modal.error({
         content: 'Error en la informacion',
@@ -130,13 +156,20 @@ export class ProducFormComponent implements OnInit {
       return;
     }
 
+    let imgData= (this.images.filter(x => x.file ? true : false) as unknown as {file:File, src: string}[]);
+    let imgFile = imgData.map(x => x.file);
 
     if (this.productEdit){
       // Editar
       this.loading = true;
-      this._dataProduct.update(this.productEdit, this.forma.getRawValue(), this.images.map(val => val.file), []).then((res) => {
+      this._dataProduct.update(this.productEdit, this.forma.getRawValue(),
+      imgFile,
+      this.imagesDelete
+      ).then((res) => {
+
         this.loading = false;
         this._location.back();
+
       })
       .catch(err => {
         console.error(err);
@@ -153,16 +186,18 @@ export class ProducFormComponent implements OnInit {
 
     this._dataProduct.createProduct(
       productTmp,
-      this.images.map(val => val.file)
+      imgFile
     ).then(x => {
       this.loading = false;
+      this.forma.reset();
+      this.forma.controls.categorys.setValue([]);
+      this.images = [];
       this._modal.info({
         content: 'El producto sea creado'
-      })
+      });
 
     })
-    
-
+ 
   }
 
 }

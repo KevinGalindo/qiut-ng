@@ -6,6 +6,7 @@ import { ProductDataService } from 'src/app/services/product-data.service';
 import { ProductInfo } from 'src/app/models/product';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ApiAccessService } from 'src/app/services/api/api-access.service';
+import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal.service';
 
 @Component({
   selector: 'app-produc-info',
@@ -25,7 +26,8 @@ export class ProducInfoComponent implements OnInit {
   constructor(public _dataProduct: ProductDataService,
     private route: ActivatedRoute,
     private location: Location,
-    public _AuthService: ApiAccessService
+    public _AuthService: ApiAccessService,
+    private _modal: DialogModalService
   ) {
     
     this._dataProduct.loadData().then(() => {
@@ -48,7 +50,6 @@ export class ProducInfoComponent implements OnInit {
     }).catch(err => {
       console.error(err);
     })
-    
 
   }
   
@@ -75,6 +76,19 @@ export class ProducInfoComponent implements OnInit {
       
     }
 
+  }
+
+  DeleteProduct(){
+    this._modal.info({content: '¿Esta seguro de borrar este producto?', confirm: true, title: 'Borrar producto'})
+    .then((res) => {
+      if (res) {
+        
+        this._dataProduct.deleteProduct(this.product.id).then(() => {
+          this.location.back();
+        });
+      
+      }
+    })
   }
 
   volver(){
