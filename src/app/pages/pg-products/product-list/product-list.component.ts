@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductInfo } from 'src/app/models/product';
 
+import { ApiInfoEmpresService, InfoEmpresa } from 'src/app/services/api-info-empres.service';
 import { ApiAccessService } from 'src/app/services/api/api-access.service';
-import { IApiProductData } from 'src/app/services/api/api-products.service';
 import { ProductDataService } from 'src/app/services/product-data.service';
 import { ListCategoriesComponent } from './components/list-categories/list-categories.component';
 import { ListFilterComponent } from './components/list-filter/list-filter.component';
@@ -28,10 +28,13 @@ export class ProductListComponent implements OnInit {
 
   list:ProductInfo[] = [];
 
+  infoEmpres: InfoEmpresa[] = [];
+
   constructor( private router: ActivatedRoute,
     public auth: ApiAccessService,
     public _dataProduct: ProductDataService,
-    public _AuthService: ApiAccessService
+    public _AuthService: ApiAccessService,
+    private _apiIfoEmpres: ApiInfoEmpresService
   ) {
 
     this.loading = true;
@@ -48,6 +51,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.infoEmpres = this._apiIfoEmpres.InfoEmpres;
   }
 
 }

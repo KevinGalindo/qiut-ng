@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiInfoEmpresService } from './services/api-info-empres.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'qiut-v2';
 
-  constructor(){
+  constructor(private _apiInfoEmpres: ApiInfoEmpresService){
+
+    this._apiInfoEmpres.getInfo();
 
     document.body.addEventListener("DOMNodeInserted", e => {
 
@@ -29,10 +32,6 @@ export class AppComponent {
           });
 
         })
-
-      }
-
-      if ( el instanceof HTMLInputElement){
 
       }
 

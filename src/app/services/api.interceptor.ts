@@ -4,16 +4,21 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpHeaders
+  HttpHeaders,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiAccessService } from './api/api-access.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
 
-  constructor(private _accessService: ApiAccessService) {}
+  constructor(private _accessService: ApiAccessService,
+    private _apiAcces: ApiAccessService,
+    private _rotuer: Router
+  ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
@@ -29,6 +34,12 @@ export class ApiInterceptor implements HttpInterceptor {
 
     const clonRequest = request.clone({url, headers });
 
-    return next.handle(clonRequest);
+    return next.handle(clonRequest).pipe(
+      catchError((err: HttpErrorResponse) => {
+        this._apiAcces.logout();
+        this._rotuer.navigateByUrl('/login');
+        return throwError(() => err);
+      })
+    );
   }
 }
