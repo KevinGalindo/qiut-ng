@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal.service';
-import { ProductDataService } from 'src/app/services/product-data.service';
-import { DomSanitizer } from '@angular/platform-browser';
-import { IproductFormData } from 'src/app/services/api/api-products.service';
-import { MultiSelectComponent } from './multi-select/multi-select.component';
-import { ActivatedRoute } from '@angular/router';
-import { ProductInfo } from 'src/app/models/product';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+
+
+import { MultiSelectComponent } from './multi-select/multi-select.component';
+import { ProductInfo } from 'src/app/models/product';
+import { ProductDataService } from 'src/app/services/product-data.service';
+import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal.service';
 
 @Component({
   selector: 'app-produc-form',
@@ -30,7 +31,7 @@ export class ProducFormComponent implements OnInit {
     price:        new FormControl('',{ nonNullable: true, validators: [Validators.required]}),
     description:  new FormControl('',{ nonNullable: true }),
     type:         new FormControl('', { nonNullable: true, validators: Validators.required}),
-    categorys:    new FormControl<string[]>(['cumpleaños'], { nonNullable: true, validators: Validators.required})
+    categorys:    new FormControl<string[]>([], { nonNullable: true, validators: Validators.required})
   });
 
   images:{file:File, src:string}[] = [];
@@ -41,25 +42,12 @@ export class ProducFormComponent implements OnInit {
     private _modal: DialogModalService,
     private _dataProduct: ProductDataService,
     private _sanitizer:DomSanitizer,
-    private route: ActivatedRoute,
     private _location:Location,
     private _routeActived:ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    // this.route.queryParamMap.subscribe(res => {
-    //   let id = res.get('id');
-    //   console.log(id);
-    // });
-
-    // this._routeActived.parent?.url.subscribe(res => {
-      
-    //   console.log(res);
-    // })
-
-    // this._routeActived.parent?.queryParams.subscribe(res => {
-    //   console.log(res);
-    // })
+  
     this._routeActived.parent?.paramMap.subscribe(res => {
 
         let param:string|null = res.get('id');
@@ -129,6 +117,7 @@ export class ProducFormComponent implements OnInit {
 
   send(): void {
 
+    console.log(this.forma.value);
 
     if (this.forma.invalid) {
       this._modal.error({
@@ -140,7 +129,7 @@ export class ProducFormComponent implements OnInit {
 
 
     if (this.productEdit){
-      // Editart
+      // Editar
       this.loading = true;
       this._dataProduct.update(this.productEdit, this.forma.getRawValue(), this.images.map(val => val.file), []).then(() => {
         this.loading = false;

@@ -14,19 +14,6 @@
         transition: border-color ease 0.3s;
     }
 }
-
-.section-category .category-flex ul li a {
-    width: 80px;
-    min-width: 80px;
-
-    .category-degree {
-        background: transparent;
-
-        &.select{
-            background:#9b59b566;
-        }
-    }
-}
 .input-titles{
     display: block;
     font-weight: 500;
@@ -46,20 +33,6 @@
     }
 }
 
-.types{
-    display: flex;
-    column-gap: 10px;
-    img{
-        height: 30px;
-        width: 30x;
-        border-radius: 50%;
-    }
-
-    input:checked {
-
-    }
-}
-
 .btn-main{
     background: var(--input-border-color);
     border: 1px solid transparent;
@@ -72,6 +45,115 @@
     }
 }
 
+.section-category{
+    text-align: center;
+
+    .category-flex{
+        max-width: 100%;
+        display: inline-block;
+        margin: 0 auto;
+
+        ul{
+            display: flex;
+            align-items: flex-start;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            overflow: auto;
+            padding-left: 0;
+
+            li label{
+                color: #374957;
+                width: 82px;
+                min-width: 82px;
+                display: block;
+                font-weight: 600;
+                cursor: pointer;
+
+                input:checked ~ .category-degree{
+                    display: block !important;
+                    background: var(--input-border-color) !important;
+                }
+
+                &:hover .category-degree{
+                    background: var(--input-border-color);
+                }
+
+                &:hover .category-border::before{
+                    opacity: 0;
+                }
+                
+                &:hover .category-degree .category-border .category-img{
+                    top: -3px;
+                    left: -3px;
+                    width: calc(100% + 6px);
+                    height: calc(100% + 6px);
+                }
+
+                .category-title{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    font-size: 13px;
+                    line-height: 21px;
+                    margin: 10px 0 0;
+                    text-align: center;
+                    transition: all ease-out 0.2s;
+                }
+
+                .category-degree{
+                    position: relative;
+                    width: 64px;
+                    height: 64px;
+                    border-radius: 50%;
+                    padding: 2px;
+                    margin: 0 auto;
+                    background: transparent;
+
+                    .category-border{
+                        position: relative;
+                        border-radius: 50%;
+                        border: 2px solid transparent;
+                        overflow: hidden;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+
+                        &::before{
+                            content: '';
+                            z-index: 1;
+                            background: rgba(0,0,0,0.15);
+                            transition: 0.2s all ease-out;
+                            border-radius: 50%;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                        & .category-img{
+                            object-fit: cover;
+                            object-position: center;
+                            border-radius: 50%;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            transition: all 0.2s ease-out;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
 @media (min-width: 768px){
 
     .form-conteiner{
@@ -81,6 +163,10 @@
         padding: 25px 30px;
         border-radius: 5px;
         box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+
+        .form-inputs{
+            display: flex;
+        }
     
         .form-inputs .input-box {
             width: calc(100% / 2 - 20px);

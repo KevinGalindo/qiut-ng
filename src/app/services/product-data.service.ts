@@ -16,9 +16,6 @@ export class ProductDataService {
   listProductsType: ProductInfo[] = [];
   listProductsCate: ProductInfo[] = [];
 
-  /** Eliminar */
-  product: IApiProductData | any;
-
   cate: string = '';
   confirm = false;
 
@@ -65,10 +62,9 @@ export class ProductDataService {
   getById(id:number): Promise<ProductInfo> {
     return new Promise((resolve, reject) => {
 
-      let product: ProductInfo | undefined = this.list.find(x => x.id);
+      let product: ProductInfo | undefined = this.list.find(x => {x.id});
 
       if (product){
-
         resolve(product);
       } else {
         this._apiService.get(id).subscribe({
@@ -134,14 +130,6 @@ export class ProductDataService {
   /******************
    * Esto no va aca
    */
-  getProduct(id: number){
-
-    this._apiService.get(id).subscribe(resp => {
-      console.log(resp);
-      this.product = resp;
-    });
-
-  }
 
   // Filtrar productos por el valor type
   filtrarProductsType(type: string){

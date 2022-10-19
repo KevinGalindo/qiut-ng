@@ -44,62 +44,51 @@
 
                 <!-- Multi select -->
                 <app-multi-select [categories]="forma.controls.categorys.getRawValue()"></app-multi-select>
-                <div class="types">
-                    <label>
-                        <input type="radio" formControlName="type" value="detalles">
-                        <img class="category-img" src="assets/img/detalles.jpg" alt="">
-                    </label>
-                    <label>
-                        <input type="radio" formControlName="type" value="tasas">
-                        <img class="category-img" src="assets/img/tasas.jpg" alt="">
-                    </label>
-                    <label>
-                        <input type="radio" formControlName="type" value="camisas">
-                        <img class="category-img" src="assets/img/camisas.jpg" alt="">
-                    </label>
-                </div>
-
+                
                 <!-- Type -->
-                <!-- <div class="section-category">
+                <div class="section-category">
                     <span class="input-titles">Tipo</span>
                     <div class="category-flex">
                 
                         <ul>
                 
                             <li>
-                                <a (click)="cambiarType('detalles')">   
-                                    <div class="category-degree" [ngClass]="{'select': type === 'detalles'}">
+                                <label>   
+                                    <input type="radio" formControlName="type" value="detalles">
+                                    <div class="category-degree">
                                         <div class="category-border">
                                             <img class="category-img" src="assets/img/detalles.jpg" alt="">
                                         </div>
                                     </div>
                                     <h3 class="category-title">Detalles</h3>
-                                </a>
+                                </label>
                             </li>
                             <li>
-                                <a (click)="cambiarType('tasas')">
-                                    <div class="category-degree" [ngClass]="{'select': type === 'tasas'}">
+                                <label>
+                                    <input type="radio" formControlName="type" value="tasas">
+                                    <div class="category-degree">
                                         <div class="category-border">
                                             <img class="category-img" src="assets/img/tasas.jpg" alt="">
                                         </div>
                                     </div>
                                     <h3 class="category-title">Tasas</h3>
-                                </a>
+                                </label>
                             </li>
                             <li>
-                                <a (click)="cambiarType('camisas')">
-                                    <div class="category-degree" [ngClass]="{'select': type === 'camisas'}">
+                                <label>
+                                    <input type="radio" formControlName="type" value="camisas">
+                                    <div class="category-degree">
                                         <div class="category-border">
                                             <img class="category-img" src="assets/img/camisas.jpg" alt="">
                                         </div>
                                     </div>
                                     <h3 class="category-title">Camisas</h3>
-                                </a>
+                                </label>
                             </li>
                         
                         </ul>
                     </div>
-                </div> -->
+                </div>
 
 
                 <!-- Galeria -->

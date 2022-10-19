@@ -1,6 +1,6 @@
 <div class="multi-select" [ngClass]="openClass">
     <!-- Label Botton select -->
-    <div class="control">
+    <div class="control" (click)="onClickMenu()">
         <span class="btn-text">
             <ng-container *ngIf="categories.length > 0; else nolist">
                 {{categories.length}} Seleccionadas
@@ -9,7 +9,7 @@
                 Seleccionar categoría
             </ng-template>
         </span>
-        <span class="arrow-dwn" (click)="onClickMenu()">
+        <span class="arrow-dwn" >
             <i class="fa-solid fa-chevron-down"></i>
         </span>
     </div>

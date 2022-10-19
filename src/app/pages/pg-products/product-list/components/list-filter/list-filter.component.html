@@ -1,21 +1,23 @@
-<div class="aside">
-    <div class="aside-conte">
-        <div class="aisde-logo"><img src="assets/img/abejita.png" alt="abejita"></div>
-        <div [ngClass]="{'active': open}" class="aside-titulo" (click)="open = !open">
-            <strong>FILTRAR</strong>
-            <span><i class="fa-solid fa-caret-right"></i></span>
-        </div>
-        <div [ngClass]="{'active': open}" class="aside-list">
-            <ul class="aside-ul">
-                <li>
-                    <input #text type="text" placeholder="Buscar...">
-                    <span><i class="fa-solid fa-search"></i></span>
-                </li>
-                <li>
-                    <div >Amistad</div>
-                    <span><i class="fa-solid fa-chevron-right"></i></span>
-                </li>
-            </ul>
+<div class="seccion">
+    <div class="aside">
+        <div class="aside-conte">
+            <div class="aisde-logo"><img src="assets/img/abejita.png" alt="abejita"></div>
+            <div [ngClass]="{'active': open}" class="aside-titulo" (click)="open = !open">
+                <strong>FILTRAR</strong>
+                <span><i class="fa-solid fa-caret-right"></i></span>
+            </div>
+            <div [ngClass]="{'active': open}" class="aside-list">
+                <ul class="aside-ul">
+                    <li>
+                        <input #text type="text" placeholder="Buscar...">
+                        <span><i class="fa-solid fa-search"></i></span>
+                    </li>
+                    <li>
+                        <div >Amistad</div>
+                        <span><i class="fa-solid fa-chevron-right"></i></span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

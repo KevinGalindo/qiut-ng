@@ -14,15 +14,13 @@ import { ApiAccessService } from 'src/app/services/api/api-access.service';
   styleUrls: ['./produc-info.component.scss'],
   imports: [CommonModule, RouterModule],
 })
-export class ProducInfoComponent implements OnInit, AfterViewInit {
+export class ProducInfoComponent implements OnInit {
   
   product!: ProductInfo;
   status:"loading" | "load" | "error" = "error";
 
   edit:boolean = false;
   
-
-  @ViewChild('contenedorImgSmal') ref:any
 
   constructor(public _dataProduct: ProductDataService,
     private route: ActivatedRoute,
@@ -52,16 +50,9 @@ export class ProducInfoComponent implements OnInit, AfterViewInit {
     })
     
 
-
-
-  }
-  ngAfterViewInit(): void {
   }
   
-  ngOnInit(): void {
-
-    // this._dataProduct.getProduct(this.id);
-    
+  ngOnInit(): void {   
   }
   
   cambiarImg(img: HTMLImageElement, imgContainer: HTMLImageElement, contenedorImgSmal: HTMLDivElement){

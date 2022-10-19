@@ -25,7 +25,6 @@ export class ApiProductsService {
     
     return this._http.get<IApiProductData[]>('getproducts')
     .pipe(map(results => {
-      console.log(results);
       return results.map(item => new ProductInfo(item));
     }));
   }

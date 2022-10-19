@@ -166,7 +166,7 @@
         display: inline-block;
         margin: 0 auto;
 
-        & ul{
+        ul{
             display: flex;
             align-items: flex-start;
             -webkit-overflow-scrolling: touch;
@@ -175,7 +175,7 @@
             overflow: auto;
             padding-left: 0;
 
-            & li a{
+            li a{
                 color: #374957;
                 width: 92px;
                 min-width: 92px;
@@ -357,118 +357,8 @@
     }
 
     .seccion{
-        display: flex;
         flex-wrap: wrap;
         justify-content: center;
-
-        .aside{
-            width: 100%;
-            padding: 20px 10px 10px;
-            color: #9da1a4;
-
-            .aside-conte{
-                background: #FFFBA3;
-                border-radius: 8px;
-                box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-
-                .aisde-logo{
-                    position: relative;
-                    height: 50px;
-
-                    img{
-                        position: absolute;
-                        left: 95px;
-                        top: -40px;
-                        transform: rotate(-10deg);
-                        width: 90px;
-                        height: 90px;
-                    }
-                }
-
-                .aside-titulo{
-                    padding: 15px 25px;
-                    font-size: 15px;
-                    color:#3b4248;
-                    font-weight: 700;
-                    background: #fff;
-                    margin-bottom: 20px;
-                    cursor: pointer;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    span{
-                        font-size: 24px;
-                        transform: rotate(90deg);
-                        transition: transform ease .3s;
-                    }
-
-                    &.active span{
-                        transform: rotate(270deg);
-                    }
-                }
-
-                .aside-list{
-                    position: relative;
-                    height: 100%;
-                    max-width: 100%;
-                    outline: none;
-                    direction: ltr;
-                    display: none;
-
-                    .aside-ul{
-                        list-style: none;
-                        max-height: 225px;
-                        overflow-y: auto;
-                        padding-left: 0;
-
-                        li{
-                            position: relative;
-                            background: #fff;
-                            color: #323e35;
-                            cursor: pointer;
-                            transition: color linear .3s;
-
-                            input{
-                                display: block;
-                                padding: 10px 45px 10px 15px;
-                                width: 100%;
-                                border: none;
-                                border-bottom: 1px solid #b3b3b3;
-                                outline: none;
-                            }
-
-                            div{
-                                display: block;
-                                padding: 10px 57px 10px 15px;
-                                white-space: nowrap;
-                                text-overflow: ellipsis;
-                                overflow: hidden;
-                            }
-
-                            span{
-                                position: absolute;
-                                top: 0;
-                                bottom: 0;
-                                margin: auto;
-                                right: 16px;
-                                display: inline-block;
-                                font-size: 20px;
-                                height: 27px;
-                            }
-
-                            &:hover{
-                                color: var(--color-grenn-azul);
-                            }
-                        }
-                    }
-
-                    &.active{
-                        display: block;
-                    }
-                }
-            }
-        }
 
         .conte{
             padding: 0;
@@ -670,6 +560,167 @@
 }
 
 /* ------------------------------------------------------------------------------- */
+// aside
+
+.aside{
+    padding: 20px 10px 10px;
+    color: #9da1a4;
+
+
+    .aside-conte{
+        background: #FFFBA3;
+        border-radius: 8px;
+        box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+
+        .aisde-logo{
+            position: relative;
+            height: 50px;
+
+            img{
+                position: absolute;
+                left: 95px;
+                top: -40px;
+                transform: rotate(-10deg);
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        .aside-titulo{
+            padding: 15px 25px;
+            font-size: 15px;
+            color:#3b4248;
+            font-weight: 700;
+            background: #fff;
+            margin-bottom: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            span{
+                font-size: 24px;
+                transform: rotate(90deg);
+                transition: transform ease .3s;
+            }
+
+            &.active span{
+                transform: rotate(270deg);
+            }
+        }
+
+        .aside-list{
+            position: relative;
+            height: 100%;
+            max-width: 100%;
+            outline: none;
+            direction: ltr;
+            display: none;
+
+            .aside-ul{
+                list-style: none;
+                max-height: 225px;
+                overflow-y: auto;
+                padding-left: 0;
+
+                li{
+                    position: relative;
+                    background: #fff;
+                    color: #323e35;
+                    cursor: pointer;
+                    transition: color linear .3s;
+
+                    input{
+                        display: block;
+                        padding: 10px 45px 10px 15px;
+                        width: 100%;
+                        border: none;
+                        border-bottom: 1px solid #b3b3b3;
+                        outline: none;
+                    }
+
+                    div{
+                        display: block;
+                        padding: 10px 57px 10px 15px;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+
+                    span{
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto;
+                        right: 16px;
+                        display: inline-block;
+                        font-size: 20px;
+                        height: 27px;
+                    }
+
+                    &:hover{
+                        color: var(--color-grenn-azul);
+                    }
+                }
+            }
+
+            &.active{
+                display: block;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px){
+    .products-list{
+        .seccion{
+            .aside{
+                flex: none;
+                width: 320px ;
+                max-width: 100%;
+        
+                .aside-conte{
+                    .aside-titulo{
+                        padding: 15px;
+                    }   
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .products-list{
+        .seccion{        
+            .aside{
+                .aside-conte{
+                    .aside-list{
+                        .aside-ul{
+                            max-height: 100%;
+                            overflow: hidden;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1400px) {
+    .products-list{
+        .seccion{
+            .conte{
+                .conte-conte{
+                    .conten-ul{
+                        grid-template-columns: repeat(3,1fr);
+                    }
+                }
+            }
+        }
+    } 
+}
+
+/* ------------------------------------------------------------------------------- */
 // ProducInfo
 .product{
     float: none;
@@ -858,7 +909,7 @@
 .form-conteiner{
     width: 100%;
     background: #fff;
-    padding: 25px 30px;
+    padding: 25px 15px;
     border-radius: 5px;
 
     .title{
@@ -878,7 +929,7 @@
     }
 
     .form-inputs{
-        display: flex;
+        // display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         margin: 20px 0 12px 0;
@@ -1006,155 +1057,6 @@
                 margin-left: 5px;
                 font-size: 16px;
                 font-weight: 500;
-            }
-        }
-    }
-}
-
-/* ------------------------------------------------------------------------------- */
-// select
-.select-container {
-    position: relative;
-    max-width: 320px;
-    width: 100%;
-    margin: 15px auto 20px;
-
-    .select-btn {
-        display: flex;
-        justify-content: space-between;
-        height: 50px;
-        align-items: center;
-        padding: 0px 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        background-color: #fff;
-        box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-
-        .btn-text {
-            font-size: 17px;
-            font-weight: 400;
-            color: #333;
-        }
-
-        &.open{
-            .arrow-dwn {
-                transform: rotate(-180deg);
-            }
-
-            & ~ .list-items{
-                display: block;
-            }
-        }
-
-        .arrow-dwn {
-            display: flex;
-            height: 21px;
-            width: 21px;
-            color: #fff;
-            font-size: 14px;
-            border-radius: 50%;
-            background: var(--input-border-color);
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-        }
-    }
-
-    .list-items {
-        position: relative;
-        display: none;
-        margin-top: 15px;
-        border-radius: 8px;
-        padding: 16px;
-        background-color: #fff;
-        box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
-        max-height: 500px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        &::-webkit-scrollbar{
-            width: 7px;
-        }
-        &::-webkit-scrollbar-track{
-            background: #f1f1f1;
-            border-radius: 25px;
-        }
-        &::-webkit-scrollbar-thumb{
-            background: #ccc;
-            border-radius: 25px;
-        }
-
-        .item {
-            display: flex;
-            align-items: center;
-            list-style: none;
-            height: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-            border-radius: 8px;
-
-            .search{
-                position: relative;
-
-                i{
-                    position: absolute;
-                    left: 15px;
-                    line-height: 53px;
-                    color: #999;
-                    font-size: 20px;
-                }
-
-                input{
-                    height: 53px;
-                    width: 100%;
-                    font-size: 17px;
-                    outline: none;
-                    border-radius: 5px;
-                    padding: 0 15px 0 43px;
-                    border: 1px solid #b3b3b3;
-                    border-bottom-width: 2px;
-                    transition: border-color ease 0.3s;
-
-                    &:focus{
-                        border-color: var(--input-border-color);
-                    }
-                }
-            }
-
-            &.checked .checkbox{
-                background-color: #4070f4;
-                border-color: #4070f4;
-
-                .check-icon {
-                    transform: scale(1);
-                }
-            }
-
-            .checkbox {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 16px;
-                width: 16px;
-                border-radius: 4px;
-                margin-right: 12px;
-                border: 1.5px solid #c0c0c0;
-                transition: all 0.3s ease-in-out;
-
-                .check-icon {
-                    color: #fff;
-                    font-size: 11px;
-                    transform: scale(0);
-                    transition: all 0.3s ease-in-out;
-                }
-            }
-
-            .item-text {
-                font-size: 16px;
-                font-weight: 400;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                text-transform: capitalize;
-                color: #333;
             }
         }
     }
