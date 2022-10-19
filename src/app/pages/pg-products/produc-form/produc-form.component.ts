@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 
 
@@ -45,7 +45,8 @@ export class ProducFormComponent implements OnInit {
     private _dataProduct: ProductDataService,
     private _sanitizer:DomSanitizer,
     private _location:Location,
-    private _routeActived:ActivatedRoute
+    private _routeActived:ActivatedRoute,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -121,8 +122,6 @@ export class ProducFormComponent implements OnInit {
 
   send(): void {
 
-    console.log(this.forma.value);
-
     if (this.forma.invalid) {
       this._modal.error({
         content: 'Error en la informacion',
@@ -140,7 +139,6 @@ export class ProducFormComponent implements OnInit {
         this._location.back();
       })
       .catch(err => {
-
         console.error(err);
         this.loading = false;
       });
@@ -157,8 +155,6 @@ export class ProducFormComponent implements OnInit {
       productTmp,
       this.images.map(val => val.file)
     ).then(x => {
-
-      console.log(x);
       this.loading = false;
       this._modal.info({
         content: 'El producto sea creado'

@@ -62,13 +62,14 @@ export class ProductDataService {
   getById(id:number): Promise<ProductInfo> {
     return new Promise((resolve, reject) => {
 
-      let product: ProductInfo | undefined = this.list.find(x => {x.id});
+      let product: ProductInfo | undefined = this.list.find(x => x.id == id);
 
       if (product){
         resolve(product);
       } else {
         this._apiService.get(id).subscribe({
           next: res => {
+            console.log(res);
             resolve(res);
           },
           error: err => {
@@ -86,8 +87,6 @@ export class ProductDataService {
         next: res => {
 
           if (res){
-            console.log(this.list);
-            console.log(res);
             this.list.find(x => x.id == product.id)?.setData(res);
           }
           resolve();

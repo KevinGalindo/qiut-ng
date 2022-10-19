@@ -94,7 +94,10 @@
                 <!-- Galeria -->
                 <div>
                     <div class="galery">
-                        <img *ngFor="let img of images" [src]="img.src">
+                        <div class="galery-img" *ngFor="let img of images">
+                            <i class="fa-solid fa-xmark"></i>
+                            <img [src]="img.src">
+                        </div>
                     </div>
                     <button type="button" class="btn btn-main" (click)="inputFile.click()">Subir imagenes</button>
                 </div>

@@ -11,6 +11,7 @@ export class ProductInfo
     public get type(): string { return this._data.type }
     public get user(): number { return this._data.user; }
     public get images(): string[] { return this._data.images.map(item => `${environment.UrlApi}/media/products/${this.id}/${item}`) }
+    public get imagesForName(): string[] { return this._data.images }
     public get description(): string { return this._data.description;  }
     public get categorys(): string[] { return this._data.categorys; }
 
