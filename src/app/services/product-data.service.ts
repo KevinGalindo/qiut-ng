@@ -86,9 +86,10 @@ export class ProductDataService {
         next: res => {
 
           if (res){
+            console.log(this.list);
+            console.log(res);
             this.list.find(x => x.id == product.id)?.setData(res);
           }
-
           resolve();
         },
         error: err => {

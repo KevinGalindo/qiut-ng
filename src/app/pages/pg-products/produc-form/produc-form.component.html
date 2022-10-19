@@ -6,7 +6,7 @@
       </div>
 
       <div class="title">
-          Crear producto
+          {{message}}
       </div>
   
       <div [formGroup]="forma">
@@ -102,12 +102,12 @@
           </div>
   
           <div class="btns">
-                <!-- <button (click)="send()" [disabled]="forma.invalid">
+                <button *ngIf="!productEdit" (click)="send()" [disabled]="forma.invalid">
                     <span *ngIf="!loading">Crear</span>
                     <span><i *ngIf="loading" class="fa-solid fa-circle-notch fa-spin"></i></span>
-                </button> -->
-                <button (click)="send()">
-                    <span *ngIf="!loading">Crear</span>
+                </button>
+                <button *ngIf="productEdit" (click)="send()">
+                    <span *ngIf="!loading">Actualizar</span>
                     <span><i *ngIf="loading" class="fa-solid fa-circle-notch fa-spin"></i></span>
                 </button>
           </div>

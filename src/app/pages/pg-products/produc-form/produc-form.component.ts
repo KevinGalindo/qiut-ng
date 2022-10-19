@@ -26,6 +26,8 @@ import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal
 export class ProducFormComponent implements OnInit {
 
   loading:boolean = false;
+  message: string = 'Crear producto';
+
   forma = new FormGroup({
     name:         new FormControl(``,{ nonNullable: true, validators: [Validators.required] }),
     price:        new FormControl('',{ nonNullable: true, validators: [Validators.required]}),
@@ -50,22 +52,24 @@ export class ProducFormComponent implements OnInit {
   
     this._routeActived.parent?.paramMap.subscribe(res => {
 
-        let param:string|null = res.get('id');
-        if (param){
-          let id:number = Number.parseInt(param);
-            
-          this._dataProduct.getById(id).then(p => {
+      let param:string|null = res.get('id');
+      if (param){
+        this.message = 'Actualizar producto';
+        let id:number = Number.parseInt(param);
+          
+        this._dataProduct.getById(id).then(p => {
 
-            this.productEdit = p;
+          this.productEdit = p;
 
-            this.forma.setValue(p.getValuesForm());
+          this.forma.setValue(p.getValuesForm());
 
-          }).catch(err => {
-            
-            console.error(err);
-          });
-        }
-    })
+        }).catch(err => {
+          
+          console.error(err);
+        });
+      }
+    });
+
   }
 
   get isNombreInvalid():boolean{
@@ -131,9 +135,9 @@ export class ProducFormComponent implements OnInit {
     if (this.productEdit){
       // Editar
       this.loading = true;
-      this._dataProduct.update(this.productEdit, this.forma.getRawValue(), this.images.map(val => val.file), []).then(() => {
+      this._dataProduct.update(this.productEdit, this.forma.getRawValue(), this.images.map(val => val.file), []).then((res) => {
         this.loading = false;
-        this._location.back()
+        this._location.back();
       })
       .catch(err => {
 
