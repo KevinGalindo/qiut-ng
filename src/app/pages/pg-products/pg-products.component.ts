@@ -19,13 +19,4 @@ export class PgProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  filter( cate: string ){
-
-    this.router.navigate( ['/productos'], {queryParams: {cate}} );
-    this.cate = cate;
-    this._dataService.cate = cate;
-    this._dataService.filtrarProductsType(cate);
-
-  }
-
 }

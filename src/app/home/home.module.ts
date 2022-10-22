@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { NabvarComponent } from './nabvar/nabvar.component';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

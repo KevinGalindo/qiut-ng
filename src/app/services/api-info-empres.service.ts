@@ -14,7 +14,6 @@ export class ApiInfoEmpresService {
     return this._http.get<InfoEmpresa[]>('empres').subscribe({
       next: res => {
         this.InfoEmpres = res;
-        console.log(res);
       },
       error: err => {
         console.log(err);

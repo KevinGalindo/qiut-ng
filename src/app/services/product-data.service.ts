@@ -16,7 +16,6 @@ export class ProductDataService {
   listProductsType: ProductInfo[] = [];
   listProductsCate: ProductInfo[] = [];
 
-  cate: string = '';
   confirm = false;
 
   constructor(private _apiService: ApiProductsService) {
@@ -118,57 +117,4 @@ export class ProductDataService {
 
     });
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /******************
-   * Esto no va aca
-   */
-
-  // Filtrar productos por el valor type
-  filtrarProductsType(type: string){
-    
-    this.listProductsCate = this.listProductsType = this.list.filter((data: ProductInfo) => {
-	    return data.type == type;
-    });
-
-  }
-
-  // Filtra producto por busqueda
-  buscarProductService(search: string){
-    
-    let searchVal = search.toLowerCase();
-
-    this.listProductsCate = this.listProductsType.filter((data: ProductInfo) => {
-	    return data.name.toLowerCase().startsWith(searchVal);
-    });
-
-  }
-
 }

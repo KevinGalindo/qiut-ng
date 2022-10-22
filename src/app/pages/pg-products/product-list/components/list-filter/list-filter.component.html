@@ -12,8 +12,8 @@
                         <input #text type="text" placeholder="Buscar...">
                         <span><i class="fa-solid fa-search"></i></span>
                     </li>
-                    <li>
-                        <div >Amistad</div>
+                    <li *ngFor="let category of categories">
+                        <div >{{category.name}}</div>
                         <span><i class="fa-solid fa-chevron-right"></i></span>
                     </li>
                 </ul>

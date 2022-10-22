@@ -39,8 +39,9 @@ export class LoginComponent implements OnInit {
    *Contructor
    */
   constructor(private _apiServices: ApiAccessService,
-              private _modal: DialogModalService,
-              private router: Router) {
+    private _modal: DialogModalService,
+    private router: Router
+  ) {
 
     const email = localStorage.getItem('email');
 
@@ -78,6 +79,11 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('');
         if (this.recorEmail.value === true) {
           localStorage.setItem('email', this.forma.controls.email.value);
+        }else{
+          const email = localStorage.getItem('email');
+          if (email) {
+            localStorage.removeItem('email');
+          }
         }
       },
       error: (error: HttpErrorResponse) => {

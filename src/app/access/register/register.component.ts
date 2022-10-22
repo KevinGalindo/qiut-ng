@@ -22,15 +22,15 @@ import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal
 export class RegisterComponent implements OnInit {
 
   forma = new FormGroup({
-    name     : new FormControl(`kevin`,{
+    name     : new FormControl(``,{
       nonNullable: true,
       validators: [Validators.required]
     }),
-    email    : new FormControl(`kevin@gmail.com`,{
+    email    : new FormControl(``,{
       nonNullable: true,
       validators: [Validators.required, Validators.email]
     }),
-    password : new FormControl('123456',{
+    password : new FormControl('',{
       nonNullable: true, 
       validators: [Validators.required, Validators.pattern('^.{6,15}$')]})
   });
@@ -78,13 +78,12 @@ export class RegisterComponent implements OnInit {
 
       },
       error: (err: HttpErrorResponse) => {
-        console.log(err);
 
         this.loading = false;
 
         this._modal.error({ 
           content: err.error.message, 
-          title: 'Error al Crear' });
+          title: 'Error al crear cuenta' });
       }
     })
 

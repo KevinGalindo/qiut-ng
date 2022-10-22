@@ -105,7 +105,11 @@
           </div>
   
           <div class="btns">
-                <button type="button" (click)="loadDataProduct()" class="btn btn-main">Descartar cambios</button>
+                <button *ngIf="productEdit"
+                        type="button"
+                        (click)="loadDataProduct()"
+                        class="btn btn-reset">Descartar cambios</button>
+
                 <button *ngIf="!productEdit" (click)="send()" [disabled]="forma.invalid">
                     <span *ngIf="!loading">Crear</span>
                     <span><i *ngIf="loading" class="fa-solid fa-circle-notch fa-spin"></i></span>

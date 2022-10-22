@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
 
@@ -7,6 +7,7 @@ import { ProductInfo } from 'src/app/models/product';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ApiAccessService } from 'src/app/services/api/api-access.service';
 import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal.service';
+import { ApiInfoEmpresService, InfoEmpresa } from 'src/app/services/api-info-empres.service';
 
 @Component({
   selector: 'app-produc-info',
@@ -21,13 +22,15 @@ export class ProducInfoComponent implements OnInit {
   status:"loading" | "load" | "error" = "error";
 
   edit:boolean = false;
+  infoEmpres: InfoEmpresa[] = [];
   
 
   constructor(public _dataProduct: ProductDataService,
     private route: ActivatedRoute,
     private location: Location,
     public _AuthService: ApiAccessService,
-    private _modal: DialogModalService
+    private _modal: DialogModalService,
+    private _apiIfoEmpres: ApiInfoEmpresService
   ) {
     
     this._dataProduct.loadData().then(() => {
@@ -54,6 +57,7 @@ export class ProducInfoComponent implements OnInit {
   }
   
   ngOnInit(): void {   
+    this.infoEmpres = this._apiIfoEmpres.InfoEmpres;
   }
   
   cambiarImg(img: HTMLImageElement, imgContainer: HTMLImageElement, contenedorImgSmal: HTMLDivElement){

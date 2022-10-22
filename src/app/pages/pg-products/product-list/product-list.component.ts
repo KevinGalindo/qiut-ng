@@ -27,6 +27,7 @@ export class ProductListComponent implements OnInit {
   loading:boolean = false;
 
   list:ProductInfo[] = [];
+  listRults:ProductInfo[] = [];
 
   infoEmpres: InfoEmpresa[] = [];
 
@@ -41,7 +42,7 @@ export class ProductListComponent implements OnInit {
     this._dataProduct.loadData().then(() => {
       
       console.log('Datos cargads');
-      this.list = this._dataProduct.list;
+      this.listRults = this.list = this._dataProduct.list;
       this.loading = false;
     }).catch(err => {
       
@@ -52,6 +53,15 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.infoEmpres = this._apiIfoEmpres.InfoEmpres;
+  }
+
+  filtrarPorType(type: string){
+    this.cate = type;
+    this.listRults = this.list = this._dataProduct.list.filter(x => x.type == type );
+  }
+
+  buscarProduct(value: string){
+    this.listRults = this.list.filter(x => x.name.toLowerCase().includes(value.toLowerCase()) );
   }
 
 }

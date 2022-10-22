@@ -309,25 +309,34 @@
             display: flex;
             justify-content: center;
             
-            div{
-                cursor: pointer;
-                width: 100px;
-                height: 60px;
-                background: #212123;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 50px;
+            a{
+                text-decoration: none;
+                color: transparent; 
                 margin: 0px 5px;
-                border-radius: 5px;
-                color: #fff;
+                background: transparent;
 
                 &:first-child{
                     background: #075e54;
                 }
 
+                &:nth-child(2){
+                    background: #212123;
+                }
+
                 &:last-child{
                     background: #1877f2;
+                }
+                   
+                div{
+                    cursor: pointer;
+                    width: 100px;
+                    height: 60px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 50px;
+                    border-radius: 5px;
+                    color: #fff;
                 }
             }
         }
@@ -518,7 +527,7 @@
                             .buttons{
                                 margin-top: 15px;
 
-                                button{
+                                button, a{
                                     width: 100%;
                                     outline: none;
                                     padding: 10px 0;
@@ -529,6 +538,7 @@
                                     cursor: pointer;
                                     text-transform: uppercase;
                                     transition: all 0.3s ease;
+                                    text-decoration: none;
 
                                     &:first-child{
                                         color: #57a764;
@@ -543,8 +553,9 @@
                                     &:last-child{
                                         color: #FFF;
                                         background: #57a764;
+                                        text-align: center;
                                         margin-left: 10px;
-                                        &:last-child:hover{
+                                        &:hover{
                                             border-color: #60c070;
                                             background: #60c070;
                                         }
@@ -645,6 +656,7 @@
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         overflow: hidden;
+                        text-transform: capitalize;
                     }
 
                     span{
@@ -831,6 +843,7 @@
         font-weight: 700;
         color: #57a764;
         transition: all ease .3s;
+        text-decoration: none;
         &:hover{
             color: #fff;
             background: #57a764;
@@ -846,6 +859,7 @@
         color: var(--color-red-danger);
         margin-left: 1rem;
         transition: all ease .3s;
+        background: #fff;
         &:hover{
             color: #fff;
             background: var(--color-red-danger);
@@ -1059,6 +1073,16 @@
                 font-weight: 500;
             }
         }
+
+        .btn-reset{
+            width: auto;
+            font-size: 1.0rem;
+            margin-right: 0;
+
+            &:hover{
+                opacity: .8;
+            }
+        }
     }
 }
 
@@ -1203,6 +1227,32 @@
                 cursor: pointer;
             }
         }
+    }
+}
+
+// Footer
+
+footer{
+    background-image: url(assets/img/footer.png);
+    background-size: cover;
+    background-position: bottom;
+    text-align: center;
+    height: 300px;
+    width: 100%;
+
+    .pie{
+        font-size: 1rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: flex-end;
+        height: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 40px;
+    }
+    
+    .pie > div:last-child{
+        padding-top: 40px;
     }
 }
 

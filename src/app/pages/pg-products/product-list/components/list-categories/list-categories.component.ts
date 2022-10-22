@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,13 +10,15 @@ import { CommonModule } from '@angular/common';
 })
 export class ListCategoriesComponent implements OnInit {
 
+  @Output() type:EventEmitter<string> = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   filter(value:string): void{
-    
+    this.type.emit(`${value}`);
   }
 
 }

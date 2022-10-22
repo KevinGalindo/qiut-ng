@@ -32,7 +32,7 @@
                         <li *ngFor="let filtro of product.categorys">{{filtro}}</li>
                     </ul>
                 </div>
-                <button class="comprar">Comprar</button>
+                <a *ngIf="!_AuthService.isAuth()" href="https://api.whatsapp.com/send/?phone=57{{infoEmpres[0].telefono}}&text={{product.name}}&type=phone_number&app_absent=0" target="_blank" class="comprar">Comprar</a>
                 <button (click)="volver()" class="volver">Volver</button>
                 <div *ngIf="_AuthService.isAuth()" class="buttons-tools">
                     <button routerLink="editar">Editar</button>
