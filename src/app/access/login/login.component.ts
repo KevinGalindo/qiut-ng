@@ -53,6 +53,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this._apiServices.isAuth()) {
+      this.router.navigateByUrl('');
+    }
   }
 
   get isEmailInvalid():boolean{
@@ -91,7 +94,8 @@ export class LoginComponent implements OnInit {
 
         this._modal.error({ 
           content: error.error.message, 
-          title: 'Error al autenticar' });
+          title: 'Error al autenticar'
+        });
           
       } 
     });

@@ -9,11 +9,11 @@
             <div [ngClass]="{'active': open}" class="aside-list">
                 <ul class="aside-ul">
                     <li>
-                        <input #text type="text" placeholder="Buscar...">
+                        <input #text type="text" (keyup)="buscarFiltro(text.value)" placeholder="Buscar...">
                         <span><i class="fa-solid fa-search"></i></span>
                     </li>
-                    <li *ngFor="let category of categories">
-                        <div >{{category.name}}</div>
+                    <li *ngFor="let category of categoriesResult">
+                        <div (click)="filterCategory(category.name)" >{{category.name}}</div>
                         <span><i class="fa-solid fa-chevron-right"></i></span>
                     </li>
                 </ul>

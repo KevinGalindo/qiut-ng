@@ -36,7 +36,6 @@ export class ApiProductsService {
     formData.append('data', JSON.stringify(data));
     
 
-
     files.forEach((f, i) => {
       formData.append(`img-${i}`, f);
     });

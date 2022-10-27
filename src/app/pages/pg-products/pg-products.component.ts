@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ProductDataService } from 'src/app/services/product-data.service';
 
 @Component({
@@ -12,7 +11,6 @@ export class PgProductsComponent implements OnInit {
   cate: string = '';
 
   constructor(
-    private router: Router,
     public _dataService: ProductDataService
   ) { }
 

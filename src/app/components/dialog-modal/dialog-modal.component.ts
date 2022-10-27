@@ -26,8 +26,6 @@ export class DialogModalComponent implements OnInit, AfterViewInit {
       this.buttonShow.click();
     }
 
-    console.log(dialogModalConfig.type.toString());
-
   }
 
   get typeToString():string{

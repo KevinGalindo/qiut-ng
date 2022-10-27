@@ -60,6 +60,14 @@ export class ProductListComponent implements OnInit {
     this.listRults = this.list = this._dataProduct.list.filter(x => x.type == type );
   }
 
+  filtrarForCategory(category: string){
+    
+    this.listRults = this.list.filter(product => {
+      return product.categorys.filter(x => x == category).length > 0;
+    });
+    
+  }
+
   buscarProduct(value: string){
     this.listRults = this.list.filter(x => x.name.toLowerCase().includes(value.toLowerCase()) );
   }

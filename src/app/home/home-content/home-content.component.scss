@@ -2,11 +2,27 @@
     .acerca-de{
         grid-template-columns: repeat(2,1fr);
 
-
         .info {
-            flex-direction: initial;
-            width: 310px;
-            margin: 10px;
+            width: 100%;
+            padding: 1.5rem;
+
+            .contenido{
+                p{
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    .redes{
+        .sociales{
+            .iconos{
+                a{
+                    div{
+                        width: 100px;
+                    }
+                }
+            }
         }
     }
 }
