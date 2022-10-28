@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiAccessService } from 'src/app/services/api/api-access.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -40,8 +40,23 @@ export class RegisterComponent implements OnInit {
   recorEmail = new FormControl(false, { nonNullable: true});
 
   constructor(private _authService: ApiAccessService,
-              private _modal: DialogModalService,
-              private _router: Router,) { }
+    private _modal: DialogModalService,
+    private _router: Router,
+  ) {
+    if(!this._authService.isAuth()){
+      console.log('Esta auth');
+      this._authService.userGetAll().subscribe({
+        next: resp => {
+          if (resp.length > 1) {
+            this._router.navigateByUrl('');
+          }
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
+    }
+  }
 
   ngOnInit(): void {
   }
@@ -69,6 +84,7 @@ export class RegisterComponent implements OnInit {
     this._authService.createAccount(this.forma.getRawValue()).subscribe({
       next: (resp) => {
         this.loading = false;
+        console.log(resp);
         localStorage.setItem('token', resp.token);
         if (this.recorEmail.value === true) {
           localStorage.setItem('email', this.forma.controls.email.value);

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class ApiAccessService {
 
   }
 
-  createAccount(user: Iuser):Observable<any>{
+  createAccount(user: Iuser): Observable<any>{
     
     return this._http.post('sign-up', user);
 
@@ -58,8 +58,13 @@ export class ApiAccessService {
 
   }
 
+  userGetAll(): Observable<IallUser[]>{
+    return this._http.get<IallUser[]>('users');
+  }
+
 }
 
+// Interfase que retorna la api sobre un user
 interface Iparams {
   status: boolean,
   message: string,
@@ -70,4 +75,14 @@ interface Iuser {
   name: string,
   email: string,
   password: string
+}
+
+interface IallUser{
+  date: string,
+  email: string,
+  id: number,
+  name: string,
+  password: string,
+  token: string,
+  tokenExp: string
 }

@@ -38,21 +38,32 @@ export class ProductListComponent implements OnInit {
     private _apiIfoEmpres: ApiInfoEmpresService
   ) {
 
+    this.loadData();
+    
+  }
+
+  ngOnInit(): void {
+    this.infoEmpres = this._apiIfoEmpres.InfoEmpres;
+  }
+
+  loadData(){
     this.loading = true;
     this._dataProduct.loadData().then(() => {
       
       console.log('Datos cargads');
       this.listRults = this.list = this._dataProduct.list;
       this.loading = false;
+      this.router.queryParamMap.subscribe(res => {
+        if (res.keys.length > 0) {
+          this.filtrarForCategory(`${res.get('id')}`);
+        }
+      });
+      
     }).catch(err => {
       
       console.error(err);
       this.loading = false;
-    })
-  }
-
-  ngOnInit(): void {
-    this.infoEmpres = this._apiIfoEmpres.InfoEmpres;
+    });
   }
 
   filtrarPorType(type: string){

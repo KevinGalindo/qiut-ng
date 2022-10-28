@@ -16,6 +16,11 @@
                 <div class="conte-titulo">
                     <h2>{{cate}}</h2>
 
+                    <!-- Boton de refrezcar -->
+                    <div class="btn-icon">
+                        <div class="bg-icon" (click)="loadData()"><i class="fa-solid fa-search"></i></div>
+                    </div>
+
                     <!-- Iinput buscar -->
                     <div class="conte-search">
                         <input type="text" #inputSearchProduct (keyup)="buscarProduct(inputSearchProduct.value)" placeholder="buscar..">

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProductDataService } from 'src/app/services/product-data.service';
 import { ProductInfo } from 'src/app/models/product';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ApiAccessService } from 'src/app/services/api/api-access.service';
 import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal.service';
 import { ApiInfoEmpresService, InfoEmpresa } from 'src/app/services/api-info-empres.service';

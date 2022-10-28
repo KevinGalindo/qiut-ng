@@ -1,7 +1,31 @@
 <footer>
     <div class="pie">
         <div>© 2022</div>
-        <div>QIUT -
-            Todos los derechos reservados</div>
+        <div class="row">
+            <div class="row-mein" *ngIf="_apiAcees.isAuth()">
+                <h5>Administrador</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a class="link-footer" href="/registrarse">Crear cuenta</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row-mein">
+                <div class="list-unstyled small text-muted">
+                    QIUT-Todos los derechos reservados
+                </div>
+            </div>
+            <div class="row-mein">
+                <h5>Links</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a class="link-footer" href="/">Inicio</a>
+                    </li>
+                    <li class="mb-2">
+                        <a class="link-footer" href="/productos">productos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </footer>
