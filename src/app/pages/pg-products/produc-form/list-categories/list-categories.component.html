@@ -1,0 +1,34 @@
+<div class="cate-head">
+    <div class="input-box">
+        <span class="input-titles">Agregar categoria</span>
+        <input  type="text"
+          placeholder="nombre..."
+          formControlName="name"
+          #inputCategory
+          required>
+        <span class="text-error">El nombre es olbligatorio</span>
+    </div>
+    <button class="btn btn-primary" (click)="send(inputCategory)"><i class="fa fa-trash" ></i></button>
+</div>
+<div class="cate-body">
+    <table class="table mt-3 animate__animated animate__fadeIn">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Borrar</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            
+              <tr *ngFor="let category of categories; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{category.name}}</td>
+                  <td>
+                    <button class="btn btn-danger" (click)="deleteCategory(category.id, i)"><i class="fa fa-trash" ></i></button>
+                  </td>
+              </tr>
+            
+        </tbody>
+    </table>
+</div>

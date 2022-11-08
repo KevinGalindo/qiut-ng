@@ -400,8 +400,9 @@
 
                     .btn-icon{
                         margin-bottom: .5rem;
-                        cursor: pointer;
+                        
                         .bg-icon{
+                            cursor: pointer;
                             background-color: #fff59d;
                             width: 45px;
                             height: 45px;
@@ -415,7 +416,6 @@
                             transition: all ease .3s;
 
                             &:hover{
-                                color: #fff;
                                 transform: rotate(180deg);
                             }
                         }
@@ -960,6 +960,26 @@
         width: 100px;
     }
 }
+/* ------------------------------------------------------------------------------- */
+// cabecera form
+.cabecera{
+    .btn-add{
+        background: var(--color-grenn-azul);
+        padding: 10px 20px;
+        border-radius: 3px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border: 1px solid transparent;
+
+        &:hover{
+            border-color: var(--color-grenn-azul);
+            color: var(--color-grenn-azul);
+        }
+    }
+}
 
 /* ------------------------------------------------------------------------------- */
 // Form
@@ -986,7 +1006,6 @@
     }
 
     .form-inputs{
-        // display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         margin: 20px 0 12px 0;
@@ -1263,11 +1282,15 @@
                 }
             }
 
-            .btn-cerrar{
+            .btn-modal-cerrar{
                 background-color: var(--color-qiut-rosa);
                 color: #fff;
                 font-size: 1em;
                 cursor: pointer;
+
+                &:hover{
+                    color: #fff;
+                }
             }
         }
     }
@@ -1307,6 +1330,12 @@ li {
     list-style: none;
 }
 
+.tbody-main{
+    height: 195px;
+    max-height: 195px !important;
+    overflow: hidden !important;
+}
+
 .btn-cerrar{
     background: var(--color-grenn-azul);
     text-transform: uppercase;
@@ -1322,6 +1351,7 @@ li {
 
 .center{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

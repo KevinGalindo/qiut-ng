@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ApiFilterServicesService, Icategories } from 'src/app/services/api/api-filter-services.service';
 
 @Component({
   selector: 'app-multi-select',
@@ -13,20 +14,29 @@ export class MultiSelectComponent implements OnInit {
   @Input() categories:any[] = [];
 
   openClass:string = '';
-  listCateogries = CATEGORIES;
+  listCateogries: Icategories[] = [];
+  list:  Icategories[] = [];
 
   private _search: string = "";
   public get search(): string {
     return this._search;
   }
   public set search(value: string) {
-    this.listCateogries = CATEGORIES.filter(x => x.name.toLowerCase().includes(value.toLowerCase()));
+    this.listCateogries = this.list.filter(x => x.name.toLowerCase().includes(value.toLowerCase()));
     this._search = value;
   }
 
 
-  constructor() {
-    
+  constructor(private _apiCategories: ApiFilterServicesService) {
+    this._apiCategories.getAll().subscribe({
+      next: resp => {
+        console.log(resp);
+        this.listCateogries = this.list = resp;
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -50,12 +60,3 @@ export class MultiSelectComponent implements OnInit {
     }
   }
 }
-
-
-
-const CATEGORIES:any [] = [
-  {id: 1,name: 'amor', status: false},
-  {id: 2, name:'parejas', status: false},
-  {id: 3, name:'dia del padre', status: false},
-  {id: 4, name:'dia del niño', status: false},
-  {id: 5, name:'cumpleaños', status: false}];

@@ -1,5 +1,23 @@
 <div class="center">
-  <div class="form-conteiner">
+    <div class="cabecera">
+        <button class="btn btn-add" (click)="modalShow = true" >Agregar categoria</button>
+        <div 
+            [ngClass]="{'active': modalShow}" 
+            class="modal-container">
+
+            <div class="modal" style="display: grid;">
+
+                <div>
+                    <app-list-categories></app-list-categories>
+                </div>
+                <div class="modal-actions">
+                    <button (click)="modalShow = false" class="btn btn-modal-cerrar">CERRAR</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="form-conteiner">
 
       <div class="form-logo">
           <img src="assets/img/nombre-logo.png" alt="qiut">

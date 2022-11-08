@@ -10,6 +10,7 @@ import { MultiSelectComponent } from './multi-select/multi-select.component';
 import { ProductInfo } from 'src/app/models/product';
 import { ProductDataService } from 'src/app/services/product-data.service';
 import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal.service';
+import { ListCategoriesComponent } from './list-categories/list-categories.component';
 
 @Component({
   selector: 'app-produc-form',
@@ -20,12 +21,14 @@ import { DialogModalService } from 'src/app/components/dialog-modal/dialog-modal
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    MultiSelectComponent
+    MultiSelectComponent,
+    ListCategoriesComponent
   ],
 })
 export class ProducFormComponent implements OnInit {
 
   loading:boolean = false;
+  modalShow: boolean = false;
   message: string = 'Crear producto';
 
   forma = new FormGroup({

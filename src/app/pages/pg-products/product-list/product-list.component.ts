@@ -66,6 +66,23 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  resetData(){
+
+    this.loading = true;
+    this._dataProduct.loadData().then(() => {
+      
+      console.log('Datos cargads');
+      this.listRults = this.list = this._dataProduct.list;
+      this.loading = false;
+      
+    }).catch(err => {
+      
+      console.error(err);
+      this.loading = false;
+    });
+
+  }
+
   filtrarPorType(type: string){
     this.cate = type;
     this.listRults = this.list = this._dataProduct.list.filter(x => x.type == type );
