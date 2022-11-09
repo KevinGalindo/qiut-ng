@@ -29,7 +29,7 @@ export class ApiProductsService {
     }));
   }
 
-  create(data:IproductFormData, files:File[]): Observable<any> {
+  create(data:IproductFormData, files:File[]): Observable<ProductInfo> {
 
     let formData = new FormData();
 
@@ -40,7 +40,10 @@ export class ApiProductsService {
       formData.append(`img-${i}`, f);
     });
 
-    return this._http.post('products', formData);
+    return this._http.post<IApiProductData>('products', formData)
+      .pipe( map(result => {
+        return new ProductInfo(result);
+      }));
   }
 
   update(id:number, data:IproductFormData, files:File[],  deleteImgs: string[]): Observable<IApiProductData|false> {

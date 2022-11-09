@@ -36,10 +36,14 @@ export class ApiInterceptor implements HttpInterceptor {
 
     return next.handle(clonRequest).pipe(
       catchError((err: HttpErrorResponse) => {
-        this._apiAcces.logout();
-        this._rotuer.navigateByUrl('/login');
-        return throwError(() => err);
+        if (err.status === 401) {
+          this._apiAcces.logout();
+          this._rotuer.navigateByUrl('/login');
+          return throwError(() => err);        
+        }
+        return throwError(() => err);        
       })
     );
+    
   }
 }

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   UrlApi: 'http://localhost/qiut-api'
+  // UrlApi: 'https://www.novaccode.com/qiut/api'
 };
 
 /*
